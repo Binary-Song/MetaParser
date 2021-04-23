@@ -5,5 +5,7 @@ if(MSVC)
     add_compile_options(/utf-8)
 endif()
 
-
+add_subdirectory(shared)
+add_subdirectory(meta-lexer)
+add_subdirectory(meta-parser)
 add_subdirectory(io)
