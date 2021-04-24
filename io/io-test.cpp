@@ -8,6 +8,7 @@ int main()
     if (errcode)
     {
         std::cout << resolver.full_diag_msg << std::endl;
+        return 1;
     }
 
     std::cout << "Input file successfully loaded:\n";
