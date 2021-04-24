@@ -1,8 +1,0 @@
-number := [0-9]*
-fake := fake
-news := news
-news2 := 13&!@#*!@3^*!^@(!$@)<!<@#
-
-===
-
-A -> fake news

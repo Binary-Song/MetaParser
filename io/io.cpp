@@ -3,19 +3,23 @@
 #include <regex>
 #include <iostream>
 #include <algorithm>
+#include <sstream>
+#include <assert.h>
 
 #define LERR_ILL_DECL 101
 #define LERR_CANT_COMPILE_REGEX 102
 #define LERR_DUP_DECL 103
 #define PERR_ILL_DECL 201
+#define PERR_DUP_DECL 203
+#define PERR_UNDEFINED 204
 
 std::set<std::string> left_names;
 
 InputFileResolver::InputFileResolver()
-    : lex_rule_decl_pattern{"([a-zA-Z0-9_]+)\\s+(:=)\\s+(.+)", std::regex_constants::optimize},
+    : lex_rule_decl_pattern{"([a-zA-Z0-9_]+)\\s+(:=)\\s+(.+)\\s*", std::regex_constants::optimize},
       lex_rule_parse_rule_separator_pattern{"===\\s*", std::regex_constants::optimize},
       empty_line_pattern("\\s*", std::regex_constants::optimize),
-      parse_rule_decl_pattern("([a-zA-Z0-9_]+)\\s+->(\\s+[a-zA-Z0-9_]+)+") {}
+      parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_]+)+)\s*)") {}
 
 int InputFileResolver::read_input(const char *file_name, Rules &result)
 {
@@ -28,31 +32,47 @@ int InputFileResolver::read_input(const char *file_name, Rules &result)
     std::ifstream file{file_name};
     int errs = 0;
     std::string line;
-    bool handling_lexer_rule = true;
+
     // 读取每一行到line中，行号为line_no
-    for (unsigned long line_no = 1; std::getline(file, line); line_no++)
+    for (int pass = 1; pass <= 2; pass++)
     {
-        // 跳过空行
-        if (std::regex_match(line, empty_line_pattern))
+        bool handling_lexer_rule = true;
+        file.clear();
+        file.seekg(0);
+        for (unsigned long line_no = 1; std::getline(file, line); line_no++)
         {
-            continue;
-        }
-        // 分隔符“===”能切换词法区和语法区
-        if (std::regex_match(line, lex_rule_parse_rule_separator_pattern))
-        {
-            handling_lexer_rule = !handling_lexer_rule;
-        }
+            // 跳过空行
+            if (std::regex_match(line, empty_line_pattern))
+            {
+                continue;
+            }
+            // 分隔符“===”能切换词法区和语法区
+            if (std::regex_match(line, lex_rule_parse_rule_separator_pattern))
+            {
+                handling_lexer_rule = !handling_lexer_rule;
+                continue;
+            }
 
-        int error_code;
-        if (handling_lexer_rule)
-            error_code = _handle_lexer_rule(line, result);
-        else
-            error_code = _handle_parser_rule(line, result);
-        // 生成诊断信息
-        diag_msg = "error " + std::to_string(error_code) + ": " + diag_msg + " @  " + std::string(file_name) + ":" + std::to_string(line_no);
-
-        if (error_code)
-            errs++;
+            int error_code;
+            if (handling_lexer_rule)
+            {
+                if (pass == 1)
+                    error_code = _handle_lexer_rule(line, result);
+            }
+            else
+            {
+                if (pass == 1)
+                    error_code = _handle_parser_rule_first_pass(line, result);
+                else
+                    error_code = _handle_parser_rule_second_pass(line, result);
+            }
+            // 生成诊断信息
+            if (error_code)
+            {
+                full_diag_msg += "error " + std::to_string(error_code) + ": " + diag_msg_reason + " @  " + std::string(file_name) + ":" + std::to_string(line_no) + "\n";
+                errs++;
+            }
+        }
     }
     return errs;
 }
@@ -63,7 +83,7 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     std::smatch matches;
     if (std::regex_match(line, matches, lex_rule_decl_pattern) == false)
     {
-        diag_msg = "illegal declaration";
+        diag_msg_reason = "illegal declaration";
         return LERR_ILL_DECL;
     }
 
@@ -74,9 +94,9 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     std::string right{matches[3].first, matches[3].second};
 
     // 检查左部无重复
-    if (terminal_name_set.count(left))
+    if (symbol_name_to_id.count(left))
     {
-        diag_msg = "duplicate declaration of token `" + left + "`";
+        diag_msg_reason = "duplicate declaration of symbol `" + left + "`";
         return LERR_DUP_DECL;
     }
 
@@ -92,31 +112,92 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     }
     catch (...)
     {
-        diag_msg = "regular expression `" + right + "` cannot be compiled";
+        diag_msg_reason = "regular expression `" + right + "` cannot be compiled";
         return LERR_CANT_COMPILE_REGEX;
     }
 
     // 登记新的规则
     result.lexer_rules.push_back(std::move(new_rule));
-    terminal_name_set.insert(left);
-    terminal_names.push_back(left);
+    symbol_name_to_id[left] = id;
+    symbol_id_to_name[id] = left;
+
+    std::cout
+        << "New rule added: " << new_rule.token_id << ", "
+        << right << "\n";
     return 0;
 }
 
-int InputFileResolver::_handle_parser_rule(std::string const &line, Rules &result)
+inline std::vector<std::string> split_into_words(std::string const &str)
+{
+    std::vector<std::string> v;
+    std::stringstream stream(str);
+    std::string word;
+    while (stream >> word)
+    {
+        v.push_back(word);
+    }
+    return v;
+}
+
+int InputFileResolver::_handle_parser_rule_first_pass(std::string const &line, Rules &result)
 {
     // 检查规则定义是否满足格式
     std::smatch matches;
     if (std::regex_match(line, matches, parse_rule_decl_pattern) == false)
     {
-        diag_msg = "illegal declaration";
+        diag_msg_reason = "illegal declaration";
         return LERR_ILL_DECL;
     }
-    for (auto &&m : matches)
+
+    std::string left(matches[1].first, matches[1].second);
+
+    if (!symbol_name_to_id.count(left))
     {
-        std::string s(m.first, m.second);
-        std::cout << s << std::endl;
+        symbol_id id = symbol_name_to_id.size() + 1;
+        symbol_name_to_id[left] = id;
+        symbol_id_to_name[id] = left;
+        std::cout << "non-terminal: " << left << ":" << id << "\n";
     }
+
+    return 0;
+}
+
+int InputFileResolver::_handle_parser_rule_second_pass(std::string const &line, Rules &result)
+{
+    // 检查规则定义是否满足格式
+    std::smatch matches;
+    if (std::regex_match(line, matches, parse_rule_decl_pattern) == false)
+    {
+        diag_msg_reason = "illegal declaration";
+        return LERR_ILL_DECL;
+    }
+
+    std::string left_str(matches[1].first, matches[1].second);
+    std::string right_str(matches[2].first, matches[2].second);
+
+    auto right_words = split_into_words(right_str);
+
+    ParserRule new_rule;
+    new_rule.left = symbol_name_to_id[left_str];
+    for (auto &&right_word : right_words)
+    {
+        if (symbol_name_to_id.count(right_word) == 0)
+        {
+            diag_msg_reason = "undefined symbol `" + right_word + "`";
+            return PERR_UNDEFINED;
+        }
+        new_rule.right.push_back(symbol_name_to_id[right_word]);
+    }
+
+    result.parser_rules.push_back(new_rule);
+
+    // log
+    std::cout << "production: " << new_rule.left << " -> ";
+    for (auto &&r : new_rule.right)
+    {
+        std::cout << " " << r;
+    }
+    std::cout << "\n";
     return 0;
 }
 
@@ -125,8 +206,9 @@ int main()
     InputFileResolver res;
     Rules rules;
     int errcode;
-    if (errcode = res.read_input("D:/Projects/CompilerExperiments/parser/input.txt", rules))
+    if (errcode = res.read_input(__FILE__ "/../input.txt", rules))
     {
-        std::cout << res.diag_msg << std::endl;
+        std::cout << res.full_diag_msg << std::endl;
     }
+    throw "Exited";
 }
