@@ -75,4 +75,8 @@ target_link_libraries(模块名 PUBLIC 引用的模块1 引用的模块2 ... )
 ![](images/2021-04-24-11-42-07.png)
 
 
-2. 设置为
+2. 设置为Launch Target
+
+![](images/2021-04-24-11-48-12.png)
+
+3. 按F5即可弹出黑窗口
