@@ -29,12 +29,15 @@ int main()
 
     // 输出所有语法规则
     std::cout << "Parser rules:\n";
+    // 先输出非终结符定义
     for (auto &&r : rules.parser_rules)
     {
         std::cout << "id=" << r.left << ", non-terminal symbol name=" << resolver.symbol_name(r.left) << "\n";
     }
+    // 再输出产生式
     for (auto &&r : rules.parser_rules)
     {
+        // resolver.symbol_name函数可以根据id取名字
         std::cout << resolver.symbol_name(r.left) << " -> ";
         for (auto &&rr : r.right)
         {
