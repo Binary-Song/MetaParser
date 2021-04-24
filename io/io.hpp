@@ -8,19 +8,11 @@
 
 class InputFileResolver
 {
+public:
+
+    /// 是否被使用过了
     bool used = false;
 
-    std::vector<std::string> terminal_names;
-    std::vector<std::string> nonterminal_names;
-    std::set<std::string> terminal_name_set;
-    std::set<std::string> nonterminal_name_set;
-
-    std::regex lex_rule_decl_pattern;
-    std::regex lex_rule_parse_rule_separator_pattern;
-    std::regex empty_line_pattern;
-    std::regex parse_rule_decl_pattern;
-
-public:
     /// 诊断信息，由read_input负责写入。
     std::string diag_msg;
 
@@ -41,13 +33,18 @@ public:
         return nonterminal_names[-sid];
     }
 
-    /// 返回符号是否为终结符，true：终结符，false：非终结符
-    bool is_terminal(symbol_id sid)
-    {
-        return sid > 0;
-    }
 
 private:
+    std::vector<std::string> terminal_names;
+    std::vector<std::string> nonterminal_names;
+    std::set<std::string> terminal_name_set;
+    std::set<std::string> nonterminal_name_set;
+
+    std::regex lex_rule_decl_pattern;
+    std::regex lex_rule_parse_rule_separator_pattern;
+    std::regex empty_line_pattern;
+    std::regex parse_rule_decl_pattern;
+
     int _handle_lexer_rule(std::string const &line, Rules &result);
     int _handle_parser_rule(std::string const &line, Rules &result);
 };
