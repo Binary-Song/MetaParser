@@ -1,3 +1,5 @@
-add_executable(IO io.cpp)
+add_library(IO io.cpp)
 target_include_directories(IO PUBLIC ".")
 target_link_libraries(IO PUBLIC shared)
+add_executable(IO-test io-test.cpp)
+target_link_libraries(IO-test PUBLIC IO)

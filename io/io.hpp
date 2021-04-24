@@ -27,18 +27,18 @@ public:
     /// 返回符号的名称。
     std::string &symbol_name(symbol_id sid)
     {
-        return symbol_id_to_name[sid];
+        return _symbol_id_to_name[sid];
     }
 
 private:
-    std::string diag_msg_reason;
+    std::string _diag_msg_reason;
 
-    std::map<symbol_id, std::string> symbol_id_to_name;
-    std::map<std::string, symbol_id> symbol_name_to_id;
-    std::regex lex_rule_decl_pattern;
-    std::regex lex_rule_parse_rule_separator_pattern;
-    std::regex empty_line_pattern;
-    std::regex parse_rule_decl_pattern;
+    std::map<symbol_id, std::string> _symbol_id_to_name;
+    std::map<std::string, symbol_id> _symbol_name_to_id;
+    std::regex _lex_rule_decl_pattern;
+    std::regex _separator_pattern;
+    std::regex _empty_line_pattern;
+    std::regex _parse_rule_decl_pattern;
 
     int _handle_lexer_rule(std::string const &line, Rules &result);
     int _handle_parser_rule_first_pass(std::string const &line, Rules &result);
