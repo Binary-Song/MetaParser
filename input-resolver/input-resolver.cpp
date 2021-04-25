@@ -19,7 +19,7 @@ InputFileResolver::InputFileResolver()
     : _lex_rule_decl_pattern{R"(([a-zA-Z0-9_]+)\s+:=\s+([^\s]+)\s*)", std::regex_constants::optimize},
       _separator_pattern{"===\\s*", std::regex_constants::optimize},
       _empty_line_pattern("\\s*", std::regex_constants::optimize),
-      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+([a-zA-Z0-9_]|/)+)+)\s*)", std::regex_constants::optimize) {}
+      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_/]+)+)\s*)", std::regex_constants::optimize) {}
 
 int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
 {
@@ -29,6 +29,11 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
     else
         throw "This function can only be used once for each object!";
 
+    // 提前定义好“空“为正斜杠
+    symbol_name_to_id["/"] = 0;
+    symbol_id_to_name[0] = "/";
+
+    // 准备读文件
     std::ifstream file{file_name};
     int errs = 0;
     std::string line;
@@ -94,7 +99,7 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     std::string right{matches[2].first, matches[2].second};
 
     // 检查左部无重复
-    if (_symbol_name_to_id.count(left))
+    if (symbol_name_to_id.count(left))
     {
         _diag_msg_reason = "duplicate declaration of symbol `" + left + "`";
         return LERR_DUP_DECL;
@@ -118,8 +123,8 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
 
     // 登记新的规则
     result.lexer_rules.push_back(std::move(new_rule));
-    _symbol_name_to_id[left] = id;
-    _symbol_id_to_name[id] = left;
+    symbol_name_to_id[left] = id;
+    symbol_id_to_name[id] = left;
 
     return 0;
 }
@@ -148,11 +153,11 @@ int InputFileResolver::_handle_parser_rule_first_pass(std::string const &line, R
 
     std::string left(matches[1].first, matches[1].second);
 
-    if (!_symbol_name_to_id.count(left))
+    if (!symbol_name_to_id.count(left))
     {
-        symbol_id id = (symbol_id)_symbol_name_to_id.size() + 1;
-        _symbol_name_to_id[left] = id;
-        _symbol_id_to_name[id] = left;
+        symbol_id id = (symbol_id)symbol_name_to_id.size() + 1;
+        symbol_name_to_id[left] = id;
+        symbol_id_to_name[id] = left;
     }
 
     return 0;
@@ -174,15 +179,15 @@ int InputFileResolver::_handle_parser_rule_second_pass(std::string const &line, 
     auto right_words = split_into_words(right_str);
 
     ParserRule new_rule;
-    new_rule.left = _symbol_name_to_id[left_str];
+    new_rule.left = symbol_name_to_id[left_str];
     for (auto &&right_word : right_words)
     {
-        if (_symbol_name_to_id.count(right_word) == 0)
+        if (symbol_name_to_id.count(right_word) == 0)
         {
             _diag_msg_reason = "undefined symbol `" + right_word + "`";
             return PERR_UNDEFINED;
         }
-        new_rule.right.push_back(_symbol_name_to_id[right_word]);
+        new_rule.right.push_back(symbol_name_to_id[right_word]);
     }
 
     result.parser_rules.push_back(new_rule);

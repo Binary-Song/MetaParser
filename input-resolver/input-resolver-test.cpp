@@ -1,5 +1,6 @@
 #include "input-resolver.hpp"
 #include <iostream>
+#include <stdlib.h>
 int main()
 {
     // 创建解析器对象
@@ -18,7 +19,7 @@ int main()
     // 下面全部都是输出
 
     std::cout << "Input file successfully loaded:\n";
-
+    std::cout << "id=0, symbol name= " << resolver.symbol_name(0) << "\n";
     // 输出所有词法规则
     std::cout << "Lexer rules:\n";
 
@@ -45,4 +46,5 @@ int main()
         }
         std::cout << "\n";
     }
+    getchar();
 }

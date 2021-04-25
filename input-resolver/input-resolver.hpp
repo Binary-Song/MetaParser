@@ -27,14 +27,18 @@ public:
     /// 返回符号的名称。
     std::string &symbol_name(symbol_id sid)
     {
-        return _symbol_id_to_name[sid];
+        return symbol_id_to_name[sid];
     }
+
+    /// 符号的id到符号名称的映射
+    std::map<symbol_id, std::string> symbol_id_to_name;
+
+    /// 符号的名称到符号id的映射
+    std::map<std::string, symbol_id> symbol_name_to_id;
 
 private:
     std::string _diag_msg_reason;
 
-    std::map<symbol_id, std::string> _symbol_id_to_name;
-    std::map<std::string, symbol_id> _symbol_name_to_id;
     std::regex _lex_rule_decl_pattern;
     std::regex _separator_pattern;
     std::regex _empty_line_pattern;

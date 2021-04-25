@@ -7,3 +7,4 @@ mult       := \*
 E -> T add T
 T -> F mult F
 F -> number
+Empty -> /
