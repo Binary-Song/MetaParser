@@ -1,3 +1,6 @@
+#ifndef _RULES_H_
+#define _RULES_H_
+
 #include <string>
 #include <vector>
 #include <regex>
@@ -52,3 +55,4 @@ struct Rules
     /// 语法规则集
     std::vector<ParserRule> parser_rules;
 };
+#endif // _RULES_H_
