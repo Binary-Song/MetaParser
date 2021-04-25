@@ -16,10 +16,10 @@
 std::set<std::string> left_names;
 
 InputFileResolver::InputFileResolver()
-    : _lex_rule_decl_pattern{"([a-zA-Z0-9_]+)\\s+(:=)\\s+(.+)\\s*", std::regex_constants::optimize},
+    : _lex_rule_decl_pattern{R"(([a-zA-Z0-9_]+)\s+:=\s+([^\s]+)\s*)", std::regex_constants::optimize},
       _separator_pattern{"===\\s*", std::regex_constants::optimize},
       _empty_line_pattern("\\s*", std::regex_constants::optimize),
-      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_]+)+)\s*)") {}
+      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_]+)+)\s*)", std::regex_constants::optimize) {}
 
 int InputFileResolver::read_input(const char *file_name, Rules &result)
 {
@@ -91,7 +91,7 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     // number  :=    [0-9]+
     // left          right
     std::string left{matches[1].first, matches[1].second};
-    std::string right{matches[3].first, matches[3].second};
+    std::string right{matches[2].first, matches[2].second};
 
     // 检查左部无重复
     if (_symbol_name_to_id.count(left))
@@ -120,7 +120,7 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     result.lexer_rules.push_back(std::move(new_rule));
     _symbol_name_to_id[left] = id;
     _symbol_id_to_name[id] = left;
- 
+
     return 0;
 }
 
@@ -152,7 +152,7 @@ int InputFileResolver::_handle_parser_rule_first_pass(std::string const &line, R
     {
         symbol_id id = (symbol_id)_symbol_name_to_id.size() + 1;
         _symbol_name_to_id[left] = id;
-        _symbol_id_to_name[id] = left; 
+        _symbol_id_to_name[id] = left;
     }
 
     return 0;
