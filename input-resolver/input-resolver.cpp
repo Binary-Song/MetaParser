@@ -19,9 +19,9 @@ InputFileResolver::InputFileResolver()
     : _lex_rule_decl_pattern{R"(([a-zA-Z0-9_]+)\s+:=\s+([^\s]+)\s*)", std::regex_constants::optimize},
       _separator_pattern{"===\\s*", std::regex_constants::optimize},
       _empty_line_pattern("\\s*", std::regex_constants::optimize),
-      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_]+)+)\s*)", std::regex_constants::optimize) {}
+      _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+([a-zA-Z0-9_]|/)+)+)\s*)", std::regex_constants::optimize) {}
 
-int InputFileResolver::read_input(const char *file_name, Rules &result)
+int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
 {
     // 确保本函数只能被调用1次
     if (used == false)

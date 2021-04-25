@@ -19,7 +19,7 @@ int main()
     // 通过解析文件，得到语言的所有规则。包括词法规则和语法规则
     Rules rules;
     // 错误代码，0为成功
-    int errcode = resolver.read_input(__FILE__ "/../test_language_rules.txt", rules);
+    int errcode = resolver.resolve_input_file(__FILE__ "/../test_language_rules.txt", rules);
     if (errcode)
     {
         // 若有错误，就输出错误消息，退出程序
