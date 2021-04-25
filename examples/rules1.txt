@@ -1,0 +1,12 @@
+number     := [0-9]+ 
+identifier := [a-zA-Z]+
+add        := [+]
+mult       := [*]
+space      := \s+ 
+error      := .
+
+===
+
+E -> T add T
+T -> F mult F
+F -> E
