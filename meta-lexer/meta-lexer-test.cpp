@@ -1,6 +1,6 @@
 #include <iostream>
 #include <meta-lexer.hpp>
-#include <io.hpp>
+#include <input-resolver.hpp>
 #include <fstream>
 #include <sstream>
 

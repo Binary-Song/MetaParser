@@ -1,0 +1,9 @@
+number     := [0-9]+ 
+add        := \+ 
+mult       := \*
+
+===
+
+E -> T add T
+T -> F mult F
+F -> number
