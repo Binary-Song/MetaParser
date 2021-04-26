@@ -1,3 +1,5 @@
+/// @file 
+
 #ifndef _IO_H_
 #define _IO_H_
 
@@ -7,7 +9,7 @@
 #include <regex>
 #include <set>
 #include <stdint.h>
-#include "shared.hpp"
+#include <rules.hpp>
 
 class InputFileResolver
 {

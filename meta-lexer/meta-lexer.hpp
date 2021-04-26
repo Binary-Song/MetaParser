@@ -1,7 +1,7 @@
 #ifndef _META_LEXER_H_
 #define _META_LEXER_H_
 
-#include <shared.hpp>
+#include <rules.hpp>
 
 /// 单词。所有单词都属于一个终结符。每个终结符表示一类的单词。
 /// 如：number := [0-9]+ 为终结符

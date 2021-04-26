@@ -9,4 +9,4 @@ add_executable(meta-lexer-test
     meta-lexer-test.cpp)
 target_link_libraries(meta-lexer-test PUBLIC 
     meta-lexer 
-    io)
+    input-resolver)
