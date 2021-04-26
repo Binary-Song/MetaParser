@@ -32,4 +32,4 @@
 
 使用生成的词法和语法分析器，编译文件，返回其是否该语言的句子。
 
-**开发者请参见本目录中的DEV_TUTORIAL.md**
+**开发者请参见本目录中的DEV_TUTORIAL.md和INTERFACING.md**
