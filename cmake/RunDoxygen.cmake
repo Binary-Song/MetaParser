@@ -26,5 +26,7 @@ function(RunDoxygen)
                     ${SPHINX_EXECUTABLE} -b html
                     ${SPHINX_SOURCE} ${SPHINX_BUILD}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                    DEPENDS docs
                     COMMENT "Generating documentation with Sphinx")
+    
 endfunction(RunDoxygen)
