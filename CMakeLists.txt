@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.1)
 project(meta-parser)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(RunDoxygen)
-set(GENERATE_DOCS NO CACHE BOOL "是否生成文档")  
 
+
+# configs
+
+set(GENERATE_DOCS NO CACHE BOOL "是否生成文档")  
+configure_file("${CMAKE_CURRENT_LIST_DIR}/docs/Doxyfile.in" "${CMAKE_CURRENT_LIST_DIR}/docs/Doxyfile")
 
 # compiler options
 
@@ -14,13 +18,17 @@ set(CMAKE_CXX_STANDARD          14) # min standard
 if(MSVC) 
     add_compile_options(/utf-8 )
 endif()
- 
+
+
+# module settings
 
 add_subdirectory(shared)
 add_subdirectory(meta-lexer)
 add_subdirectory(meta-parser)
 add_subdirectory(input-resolver)
 add_subdirectory(examples)
+
+# docs
 
 if(GENERATE_DOCS)
     RunDoxygen()
