@@ -1,0 +1,4 @@
+mkdir build 
+        && cmake -Bbuild -DGENERATE_DOCS:BOOL=YES
+        && cmake --build build --target Sphinx
+        && touch docs/sphinx/.nojekyll

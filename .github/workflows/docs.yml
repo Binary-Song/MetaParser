@@ -24,10 +24,10 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@1.0.0
     - name: Build docs
-      run: cd docs
-        && make html
-        && cd _build/html
-        && touch .nojekyll
+      run: mkdir build 
+        && cmake -Bbuild -DGENERATE_DOCS:BOOL=YES
+        && cmake --build build --target Sphinx
+        && touch docs/sphinx/.nojekyll
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
