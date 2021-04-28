@@ -5,9 +5,14 @@ include(RunDoxygen)
 set(GENERATE_DOCS NO CACHE BOOL "是否生成文档")  
 
 
+# compiler options
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON ) # standard mandatory
+set(CMAKE_CXX_EXTENSIONS        OFF ) # no gnu c++
+set(CMAKE_CXX_STANDARD          14) # min standard 
 
 if(MSVC) 
-    add_compile_options(/utf-8)
+    add_compile_options(/utf-8 )
 endif()
  
 
