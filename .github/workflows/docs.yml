@@ -27,7 +27,8 @@ jobs:
       run: mkdir build 
         && cmake -Bbuild -DGENERATE_DOCS:BOOL=YES
         && cmake --build build --target Sphinx
-        && touch docs/sphinx/.nojekyll
+        && cd build/docs/sphinx
+        && touch .nojekyll
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
