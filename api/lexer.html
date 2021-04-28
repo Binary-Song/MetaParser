@@ -158,10 +158,85 @@
             
   <div class="section" id="meta-lexer">
 <h1>meta-lexer<a class="headerlink" href="#meta-lexer" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfile: Cannot find file “meta-lexer.hpp </p>
+<dl class="cpp struct">
+<dt id="_CPPv45Token">
+<span id="_CPPv35Token"></span><span id="_CPPv25Token"></span><span id="Token"></span><span class="target" id="struct_token"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Token</span></code><a class="headerlink" href="#_CPPv45Token" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>单词。所有单词都属于一个终结符。每个终结符表示一类的单词。 如：number := [0-9]+ 为终结符 123 为单词。 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N5Token5TokenE9symbol_id6size_t6size_t">
+<span id="_CPPv3N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="_CPPv2N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="Token::Token__symbol_id.s.s"></span><span class="target" id="struct_token_1ac338a902a074ca2adaaa3bcde12ca48c"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Token</span></code><span class="sig-paren">(</span><span class="pre">symbol_id</span> <em><span class="pre">id</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">begin</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">end</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Token5TokenE9symbol_id6size_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
 </div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N5Token2idE">
+<span id="_CPPv3N5Token2idE"></span><span id="_CPPv2N5Token2idE"></span><span id="Token::id__symbol_id"></span><span class="target" id="struct_token_1a2229a71a32c7b1a969e102205c7bf724"></span><span class="pre">symbol_id</span> <code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#_CPPv4N5Token2idE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>单词对应的终结符id </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Token5beginE">
+<span id="_CPPv3N5Token5beginE"></span><span id="_CPPv2N5Token5beginE"></span><span id="Token::begin__s"></span><span class="target" id="struct_token_1a9e12c3706927de9e2fd8253461020c7b"></span><span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">begin</span></code><a class="headerlink" href="#_CPPv4N5Token5beginE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>单词的开始位置 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Token3endE">
+<span id="_CPPv3N5Token3endE"></span><span id="_CPPv2N5Token3endE"></span><span id="Token::end__s"></span><span class="target" id="struct_token_1a4b0c56d18c9783f037cde4d463cc7c76"></span><span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">end</span></code><a class="headerlink" href="#_CPPv4N5Token3endE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>单词的结束位置（属于单词的最后一个字符的后1个位置） </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv45Lexer">
+<span id="_CPPv35Lexer"></span><span id="_CPPv25Lexer"></span><span id="Lexer"></span><span class="target" id="class_lexer"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Lexer</span></code><a class="headerlink" href="#_CPPv45Lexer" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>词法分析器 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE">
+<span id="_CPPv3N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="_CPPv2N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="Lexer::Lexer__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a8326b816e8f05350db34aa3159416d80"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Lexer</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">LexerRule</span><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>给定语言的词法规则，构造词法分析器 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE">
+<span id="_CPPv3N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE"></span><span id="_CPPv2N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE"></span><span id="Lexer::analyze__ssCR.std::vector:Token:R"></span><span class="target" id="class_lexer_1ab274c8fcad2e95dac085769f1eb0dd1e"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">analyze</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">str</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv45Token" title="Token"><span class="pre">Token</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">tokens</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>进行词法分析，输出单词序列（tokens），返回错误代码。0表示成功，其他值表示失败 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N5Lexer7add_eofE">
+<span id="_CPPv3N5Lexer7add_eofE"></span><span id="_CPPv2N5Lexer7add_eofE"></span><span id="Lexer::add_eof__b"></span><span class="target" id="class_lexer_1a61e76646400db8c3e5c0caaf30ab0d17"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">add_eof</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N5Lexer7add_eofE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>是否添加文件终结符 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Lexer8diag_msgE">
+<span id="_CPPv3N5Lexer8diag_msgE"></span><span id="_CPPv2N5Lexer8diag_msgE"></span><span id="Lexer::diag_msg__ss"></span><span class="target" id="class_lexer_1aaac44076fa30f611a5eee021ef864f41"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">diag_msg</span></code><a class="headerlink" href="#_CPPv4N5Lexer8diag_msgE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>诊断信息，由analyze写入 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N5Lexer5rulesE">
+<span id="_CPPv3N5Lexer5rulesE"></span><span id="_CPPv2N5Lexer5rulesE"></span><span id="Lexer::rules__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a4405ef6ef670b5e5a3c7fd3c4c44c37b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">LexerRule</span><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">rules</span></code><a class="headerlink" href="#_CPPv4N5Lexer5rulesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
 </div>
 
 
