@@ -27,6 +27,8 @@ class Lexer
     std::vector<LexerRule> const &rules;
 
 public:
+    /// 是否添加文件终结符
+    bool add_eof = false;
     /// 诊断信息，由analyze写入
     std::string diag_msg;
 
