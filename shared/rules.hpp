@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include <map>
+
 #include <stdint.h>
 
 /// 符号（分为终结符或非终结符）的id是一个32位整数,
@@ -61,5 +63,17 @@ struct Rules
     std::vector<LexerRule> lexer_rules;
     /// 语法规则集
     std::vector<ParserRule> parser_rules;
+    
+    /// 符号的id到符号名称的映射，便于通过id查找符号名。id为k的符号，名称为 @ref symbol_id_to_name [k]。
+    std::map<symbol_id, std::string> symbol_id_to_name;
+
+    /// 符号的名称到符号id的映射，便于通过符号名查找id，id为 @ref symbol_name_to_id [k]。
+    std::map<std::string, symbol_id> symbol_name_to_id;
+
+    /// 终结符数量
+    int terminal_count = -1;
+
+    /// 非终结符数量
+    int non_terminal_count = -1;
 };
 #endif // _RULES_H_

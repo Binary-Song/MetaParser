@@ -75,14 +75,14 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
             if (mode == 0)
             {
                 if (pass == 1)
-                    error_code = handle_lexer_rule(line, matches );
+                    error_code = handle_lexer_rule(line, matches);
             }
             else if (mode == 1)
             {
                 if (pass == 1)
-                    error_code = handle_parser_rule_first_pass(line, matches );
+                    error_code = handle_parser_rule_first_pass(line, matches);
                 else
-                    error_code = handle_parser_rule_second_pass(line, matches );
+                    error_code = handle_parser_rule_second_pass(line, matches);
             }
             else
             {
@@ -96,6 +96,17 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
                 errs++;
             }
         }
+    }
+    if (errs)
+    {
+        result = Rules();
+    }
+    else
+    {
+        result.non_terminal_count = non_terminal_count;
+        result.terminal_count = terminal_count;
+        result.symbol_id_to_name = symbol_id_to_name;
+        result.symbol_name_to_id = symbol_name_to_id;
     }
     return errs;
 }
@@ -146,9 +157,9 @@ int InputFileResolver::handle_parser_rule_first_pass(std::string const &line, st
 }
 
 int InputFileResolver::handle_parser_rule_second_pass(std::string const &line, std::smatch &matches)
-{ 
+{
     std::string left_str(matches[1].first, matches[1].second);
-    std::string right_str(matches[2].first, matches[2].second);  
+    std::string right_str(matches[2].first, matches[2].second);
     return add_parser_rule(left_str, split_into_words(right_str));
 }
 
@@ -191,8 +202,8 @@ int InputFileResolver::add_lexer_rule(symbol_id id, std::string &regex)
 }
 
 /// 根据产生式的左部和右部，构造语法规则，添加到out_rules中。如果有错，将错写入_diag_msg_reason，返回错误代码。
-int InputFileResolver::add_parser_rule(std::string const& left, std::vector<std::string> const& right_words)
-{   
+int InputFileResolver::add_parser_rule(std::string const &left, std::vector<std::string> const &right_words)
+{
     ParserRule new_rule;
     new_rule.left = symbol_name_to_id[left];
     for (auto &&right_word : right_words)
