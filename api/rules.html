@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>规则 &mdash; MetaParser  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/mycss.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="规则输入解析器" href="input.html" />
+    <link rel="prev" title="欢迎阅读 MetaParser 项目API文档" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MetaParser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">规则</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">规则输入解析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexer.html">词法分析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parser.html">语法分析器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MetaParser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>规则</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/rules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>规则<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt id="_CPPv49symbol_id">
+<span id="_CPPv39symbol_id"></span><span id="_CPPv29symbol_id"></span><span class="target" id="rules_8hpp_1a5c5dd6d289be5fc53e93dfcd6f87d60c"></span><em class="property"><span class="pre">using</span> </em><code class="sig-name descname"><span class="pre">symbol_id</span></code> <span class="pre">=</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">int32_t</span><a class="headerlink" href="#_CPPv49symbol_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>符号（分为终结符或非终结符）的id是一个32位整数, 正的id表示非终结符(non-terminal) 负的id表示终结符(token或terminal) id为0表示空 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv49is_termin9symbol_id">
+<span id="_CPPv39is_termin9symbol_id"></span><span id="_CPPv29is_termin9symbol_id"></span><span id="is_termin__symbol_id"></span><span class="target" id="rules_8hpp_1a15550f2e7a3856247d61c186d945c8cf"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_termin</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">sid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49is_termin9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>返回符号是否为终结符 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413is_non_termin9symbol_id">
+<span id="_CPPv313is_non_termin9symbol_id"></span><span id="_CPPv213is_non_termin9symbol_id"></span><span id="is_non_termin__symbol_id"></span><span class="target" id="rules_8hpp_1ad2165719ed4c223cadc72acf1a530f1f"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_non_termin</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">sid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413is_non_termin9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>返回符号是否为非终结符 </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv49LexerRule">
+<span id="_CPPv39LexerRule"></span><span id="_CPPv29LexerRule"></span><span id="LexerRule"></span><span class="target" id="struct_lexer_rule"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">LexerRule</span></code><a class="headerlink" href="#_CPPv49LexerRule" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;rules.hpp&gt;</em><p>词法规则。包含正则表达式和对应的终结符 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N9LexerRule9LexerRuleE9symbol_id">
+<span id="_CPPv3N9LexerRule9LexerRuleE9symbol_id"></span><span id="_CPPv2N9LexerRule9LexerRuleE9symbol_id"></span><span id="LexerRule::LexerRule__symbol_id"></span><span class="target" id="struct_lexer_rule_1abfad074ff90156969f66167519790943"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">LexerRule</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LexerRule9LexerRuleE9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>默认构造，指定id </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE">
+<span id="_CPPv3N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="_CPPv2N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="LexerRule::LexerRule__symbol_id.ssCR"></span><span class="target" id="struct_lexer_rule_1a0b6dfde41bd1660a6981347964fd250f"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">LexerRule</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">pattern</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>指定id和正则表达式，构造词法规则。涉及将regex字符串编译为自动机，耗时慎用。 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N9LexerRule8token_idE">
+<span id="_CPPv3N9LexerRule8token_idE"></span><span id="_CPPv2N9LexerRule8token_idE"></span><span id="LexerRule::token_id__symbol_id"></span><span class="target" id="struct_lexer_rule_1a221540697074571a1dab57d67391178d"></span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">token_id</span></code><a class="headerlink" href="#_CPPv4N9LexerRule8token_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>终结符id </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N9LexerRule3regE">
+<span id="_CPPv3N9LexerRule3regE"></span><span id="_CPPv2N9LexerRule3regE"></span><span id="LexerRule::reg__std::regex"></span><span class="target" id="struct_lexer_rule_1a63a8b183fb30b8a5e48a12ee91c53d18"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">regex</span> <code class="sig-name descname"><span class="pre">reg</span></code><a class="headerlink" href="#_CPPv4N9LexerRule3regE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>正则 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv410ParserRule">
+<span id="_CPPv310ParserRule"></span><span id="_CPPv210ParserRule"></span><span id="ParserRule"></span><span class="target" id="struct_parser_rule"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">ParserRule</span></code><a class="headerlink" href="#_CPPv410ParserRule" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;rules.hpp&gt;</em><p>语法规则。包含产生式的左部和右部。 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N10ParserRule4leftE">
+<span id="_CPPv3N10ParserRule4leftE"></span><span id="_CPPv2N10ParserRule4leftE"></span><span id="ParserRule::left__symbol_id"></span><span class="target" id="struct_parser_rule_1a6e2b1e221d88b2faba79dedbca7022c0"></span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">left</span></code><a class="headerlink" href="#_CPPv4N10ParserRule4leftE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>产生式的左部的符号id，只支持1个左部符号 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N10ParserRule5rightE">
+<span id="_CPPv3N10ParserRule5rightE"></span><span id="_CPPv2N10ParserRule5rightE"></span><span id="ParserRule::right__std::vector:symbol_id:"></span><span class="target" id="struct_parser_rule_1a38080e244984a786992573c9b2e87943"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">right</span></code><a class="headerlink" href="#_CPPv4N10ParserRule5rightE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>产生式的右部的符号id，可以是多个终结符或非终结符。 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv45Rules">
+<span id="_CPPv35Rules"></span><span id="_CPPv25Rules"></span><span id="Rules"></span><span class="target" id="struct_rules"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Rules</span></code><a class="headerlink" href="#_CPPv45Rules" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;rules.hpp&gt;</em><p>语言的规则 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules11lexer_rulesE">
+<span id="_CPPv3N5Rules11lexer_rulesE"></span><span id="_CPPv2N5Rules11lexer_rulesE"></span><span id="Rules::lexer_rules__std::vector:LexerRule:"></span><span class="target" id="struct_rules_1a06ad5cc2f0688224b08bcca23a6856fb"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49LexerRule" title="LexerRule"><span class="pre">LexerRule</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">lexer_rules</span></code><a class="headerlink" href="#_CPPv4N5Rules11lexer_rulesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>词法规则集 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules12parser_rulesE">
+<span id="_CPPv3N5Rules12parser_rulesE"></span><span id="_CPPv2N5Rules12parser_rulesE"></span><span id="Rules::parser_rules__std::vector:ParserRule:"></span><span class="target" id="struct_rules_1a35f5d7d4a460b06571a623f5b6da9e8c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv410ParserRule" title="ParserRule"><span class="pre">ParserRule</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">parser_rules</span></code><a class="headerlink" href="#_CPPv4N5Rules12parser_rulesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>语法规则集 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="input.html" class="btn btn-neutral float-right" title="规则输入解析器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="欢迎阅读 MetaParser 项目API文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, binary-song.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

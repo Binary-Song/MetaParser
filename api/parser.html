@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>语法分析器 &mdash; MetaParser  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/mycss.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="词法分析器" href="lexer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MetaParser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rules.html">规则</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">规则输入解析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexer.html">词法分析器</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">语法分析器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MetaParser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>语法分析器</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/parser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>语法分析器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp class">
+<dt id="_CPPv46Parser">
+<span id="_CPPv36Parser"></span><span id="_CPPv26Parser"></span><span id="Parser"></span><span class="target" id="class_parser"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Parser</span></code><a class="headerlink" href="#_CPPv46Parser" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;meta-parser.hpp&gt;</em><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser6ParserERKNSt6vectorI10ParserRuleEE">
+<span id="_CPPv3N6Parser6ParserERKNSt6vectorI10ParserRuleEE"></span><span id="_CPPv2N6Parser6ParserERKNSt6vectorI10ParserRuleEE"></span><span id="Parser::Parser__std::vector:ParserRule:CR"></span><span class="target" id="class_parser_1a494b973aeacffcd95ca7e2396a6972ef"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Parser</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv410ParserRule" title="ParserRule"><span class="pre">ParserRule</span></a><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser6ParserERKNSt6vectorI10ParserRuleEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>给定语言的语法规则，初始化语法分析器。初始化包括4步：<ol class="lowerroman simple">
+<li><p>计算能推导出空的非终结符</p></li>
+<li><p>计算first集</p></li>
+<li><p>计算follow集</p></li>
+<li><p>计算select集 </p></li>
+</ol>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser31_compute_empty_deriving_symbolsEv">
+<span id="_CPPv3N6Parser31_compute_empty_deriving_symbolsEv"></span><span id="_CPPv2N6Parser31_compute_empty_deriving_symbolsEv"></span><span id="Parser::_compute_empty_deriving_symbols"></span><span class="target" id="class_parser_1a893fd069878ccef7706b7ec01f05c769"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">_compute_empty_deriving_symbols</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser31_compute_empty_deriving_symbolsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>计算能推导出空的非终结符，计算结果存放在_empty_derivings中。 TODO: 实现本函数 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser18_compute_first_setEv">
+<span id="_CPPv3N6Parser18_compute_first_setEv"></span><span id="_CPPv2N6Parser18_compute_first_setEv"></span><span id="Parser::_compute_first_set"></span><span class="target" id="class_parser_1a3ec69f94af10e7c0532ccb47c1c4abfb"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">_compute_first_set</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser18_compute_first_setEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>计算FIRST集合，计算结果存放在first_set中。 TODO: 实现本函数 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser19_compute_follow_setEv">
+<span id="_CPPv3N6Parser19_compute_follow_setEv"></span><span id="_CPPv2N6Parser19_compute_follow_setEv"></span><span id="Parser::_compute_follow_set"></span><span class="target" id="class_parser_1a4938b8797e29c812804b54df37e4ef06"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">_compute_follow_set</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser19_compute_follow_setEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>计算follow集合，计算结果存放在follow_set中。 TODO: 实现本函数 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser19_compute_select_setEv">
+<span id="_CPPv3N6Parser19_compute_select_setEv"></span><span id="_CPPv2N6Parser19_compute_select_setEv"></span><span id="Parser::_compute_select_set"></span><span class="target" id="class_parser_1aa9d6aa978f793abadf798d9849873f4c"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">_compute_select_set</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser19_compute_select_setEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>计算select集合，计算结果存放在select_set中。 TODO: 实现本函数 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N6Parser5rulesE">
+<span id="_CPPv3N6Parser5rulesE"></span><span id="_CPPv2N6Parser5rulesE"></span><span id="Parser::rules__std::vector:ParserRule:CR"></span><span class="target" id="class_parser_1af8632b3c28bb5f0f2e8da07baddf2467"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv410ParserRule" title="ParserRule"><span class="pre">ParserRule</span></a><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">rules</span></code><a class="headerlink" href="#_CPPv4N6Parser5rulesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N6Parser16_empty_derivingsE">
+<span id="_CPPv3N6Parser16_empty_derivingsE"></span><span id="_CPPv2N6Parser16_empty_derivingsE"></span><span id="Parser::_empty_derivings__std::vector:std::int8_t:"></span><span class="target" id="class_parser_1a041e8b220971e6919302cb3629b8117e"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">int8_t</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_empty_derivings</span></code><a class="headerlink" href="#_CPPv4N6Parser16_empty_derivingsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>_compute_empty_deriving_symbols 的结果。假设非终结符N的id为i，则 _empty_derivings[i] 表示该N是否能经过一步或多步推导出空。0表示不能，1表示能。对于整数x，若x不是某个非终结符的id，则_empty_derivings[x]的值无意义。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N6Parser10_first_setE">
+<span id="_CPPv3N6Parser10_first_setE"></span><span id="_CPPv2N6Parser10_first_setE"></span><span id="Parser::_first_set__std::vector:std::set:symbol_id::"></span><span class="target" id="class_parser_1a6b7b3721f58dbede1808009329ebe3df"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_first_set</span></code><a class="headerlink" href="#_CPPv4N6Parser10_first_setE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>_compute_first_set 的结果。假设符号X的id为i，则 first_set[abs(i)] 是X的FIRST集（abs为取绝对值）。 X既可以是终结符也可以是非终结符。终结符的首符号集就是自己。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N6Parser11_follow_setE">
+<span id="_CPPv3N6Parser11_follow_setE"></span><span id="_CPPv2N6Parser11_follow_setE"></span><span id="Parser::_follow_set__std::vector:std::set:symbol_id::"></span><span class="target" id="class_parser_1a6c67802fb27506dcb80a2ad9977b0766"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_follow_set</span></code><a class="headerlink" href="#_CPPv4N6Parser11_follow_setE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>_compute_select_set 的结果。假设非终结符N的id为i，则 follow_set[i] 是N的FOLLOW集。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N6Parser11_select_setE">
+<span id="_CPPv3N6Parser11_select_setE"></span><span id="_CPPv2N6Parser11_select_setE"></span><span id="Parser::_select_set__std::vector:std::set:symbol_id::"></span><span class="target" id="class_parser_1a0dab86c9e159b6bdae1dafe95e64767b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_select_set</span></code><a class="headerlink" href="#_CPPv4N6Parser11_select_setE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>_compute_follow_set 的结果。对于产生式rules[i]，则 select_set[i] 是rules[i]的SELECT集。 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="lexer.html" class="btn btn-neutral float-left" title="词法分析器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, binary-song.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

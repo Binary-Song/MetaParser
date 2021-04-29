@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>meta-lexer &mdash; MetaParser  documentation</title>
+  <title>词法分析器 &mdash; MetaParser  documentation</title>
   
 
   
@@ -40,7 +40,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="input resolver" href="input.html" /> 
+    <link rel="next" title="语法分析器" href="parser.html" />
+    <link rel="prev" title="规则输入解析器" href="input.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,10 +86,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="input.html">input resolver</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">meta-lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules.html">规则</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">规则输入解析器</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">词法分析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parser.html">语法分析器</a></li>
 </ul>
 
             
@@ -137,7 +140,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>meta-lexer</li>
+      <li>词法分析器</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,8 +159,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="meta-lexer">
-<h1>meta-lexer<a class="headerlink" href="#meta-lexer" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1>词法分析器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="cpp struct">
 <dt id="_CPPv45Token">
 <span id="_CPPv35Token"></span><span id="_CPPv25Token"></span><span id="Token"></span><span class="target" id="struct_token"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Token</span></code><a class="headerlink" href="#_CPPv45Token" title="Permalink to this definition">¶</a><br /></dt>
@@ -166,7 +169,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N5Token5TokenE9symbol_id6size_t6size_t">
-<span id="_CPPv3N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="_CPPv2N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="Token::Token__symbol_id.s.s"></span><span class="target" id="struct_token_1ac338a902a074ca2adaaa3bcde12ca48c"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Token</span></code><span class="sig-paren">(</span><span class="pre">symbol_id</span> <em><span class="pre">id</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">begin</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">end</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Token5TokenE9symbol_id6size_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="_CPPv2N5Token5TokenE9symbol_id6size_t6size_t"></span><span id="Token::Token__symbol_id.s.s"></span><span class="target" id="struct_token_1ac338a902a074ca2adaaa3bcde12ca48c"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Token</span></code><span class="sig-paren">(</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">begin</span></em> <span class="pre">=</span> <span class="pre">0</span>, <span class="pre">size_t</span> <em><span class="pre">end</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Token5TokenE9symbol_id6size_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -174,7 +177,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt id="_CPPv4N5Token2idE">
-<span id="_CPPv3N5Token2idE"></span><span id="_CPPv2N5Token2idE"></span><span id="Token::id__symbol_id"></span><span class="target" id="struct_token_1a2229a71a32c7b1a969e102205c7bf724"></span><span class="pre">symbol_id</span> <code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#_CPPv4N5Token2idE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5Token2idE"></span><span id="_CPPv2N5Token2idE"></span><span id="Token::id__symbol_id"></span><span class="target" id="struct_token_1a2229a71a32c7b1a969e102205c7bf724"></span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#_CPPv4N5Token2idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>单词对应的终结符id </p>
 </dd></dl>
 
@@ -201,7 +204,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE">
-<span id="_CPPv3N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="_CPPv2N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="Lexer::Lexer__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a8326b816e8f05350db34aa3159416d80"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Lexer</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">LexerRule</span><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="_CPPv2N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="Lexer::Lexer__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a8326b816e8f05350db34aa3159416d80"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Lexer</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49LexerRule" title="LexerRule"><span class="pre">LexerRule</span></a><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>给定语言的词法规则，构造词法分析器 </p>
 </dd></dl>
 
@@ -231,7 +234,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
 <dl class="cpp var">
 <dt id="_CPPv4N5Lexer5rulesE">
-<span id="_CPPv3N5Lexer5rulesE"></span><span id="_CPPv2N5Lexer5rulesE"></span><span id="Lexer::rules__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a4405ef6ef670b5e5a3c7fd3c4c44c37b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">LexerRule</span><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">rules</span></code><a class="headerlink" href="#_CPPv4N5Lexer5rulesE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5Lexer5rulesE"></span><span id="_CPPv2N5Lexer5rulesE"></span><span id="Lexer::rules__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a4405ef6ef670b5e5a3c7fd3c4c44c37b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49LexerRule" title="LexerRule"><span class="pre">LexerRule</span></a><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">rules</span></code><a class="headerlink" href="#_CPPv4N5Lexer5rulesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -245,7 +248,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="input.html" class="btn btn-neutral float-left" title="input resolver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parser.html" class="btn btn-neutral float-right" title="语法分析器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="input.html" class="btn btn-neutral float-left" title="规则输入解析器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

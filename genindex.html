@@ -84,10 +84,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">目录:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/input.html">input resolver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/lexer.html">meta-lexer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/rules.html">规则</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/input.html">规则输入解析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/lexer.html">词法分析器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/parser.html">语法分析器</a></li>
 </ul>
 
             
@@ -159,6 +161,9 @@
 <div class="genindex-jumpbox">
  <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  
 </div>
@@ -181,10 +186,10 @@
 </li>
       <li><a href="api/input.html#_CPPv4N17InputFileResolver24_parse_rule_decl_patternE">InputFileResolver::_parse_rule_decl_pattern (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/input.html#_CPPv4N17InputFileResolver18_separator_patternE">InputFileResolver::_separator_pattern (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/input.html#_CPPv4N17InputFileResolver13full_diag_msgE">InputFileResolver::full_diag_msg (C++ member)</a>
 </li>
       <li><a href="api/input.html#_CPPv4N17InputFileResolver17InputFileResolverEv">InputFileResolver::InputFileResolver (C++ function)</a>
@@ -199,6 +204,10 @@
 </li>
       <li><a href="api/input.html#_CPPv4N17InputFileResolver4usedE">InputFileResolver::used (C++ member)</a>
 </li>
+      <li><a href="api/rules.html#_CPPv413is_non_termin9symbol_id">is_non_termin (C++ function)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv49is_termin9symbol_id">is_termin (C++ function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -211,13 +220,79 @@
 </li>
       <li><a href="api/lexer.html#_CPPv4N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE">Lexer::analyze (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/lexer.html#_CPPv4N5Lexer8diag_msgE">Lexer::diag_msg (C++ member)</a>
 </li>
       <li><a href="api/lexer.html#_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE">Lexer::Lexer (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/lexer.html#_CPPv4N5Lexer5rulesE">Lexer::rules (C++ member)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv49LexerRule">LexerRule (C++ struct)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N9LexerRule9LexerRuleE9symbol_id">LexerRule::LexerRule (C++ function)</a>, <a href="api/rules.html#_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE">[1]</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N9LexerRule3regE">LexerRule::reg (C++ member)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N9LexerRule8token_idE">LexerRule::token_id (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/parser.html#_CPPv46Parser">Parser (C++ class)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser31_compute_empty_deriving_symbolsEv">Parser::_compute_empty_deriving_symbols (C++ function)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser18_compute_first_setEv">Parser::_compute_first_set (C++ function)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser19_compute_follow_setEv">Parser::_compute_follow_set (C++ function)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser19_compute_select_setEv">Parser::_compute_select_set (C++ function)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser16_empty_derivingsE">Parser::_empty_derivings (C++ member)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser10_first_setE">Parser::_first_set (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/parser.html#_CPPv4N6Parser11_follow_setE">Parser::_follow_set (C++ member)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser11_select_setE">Parser::_select_set (C++ member)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser6ParserERKNSt6vectorI10ParserRuleEE">Parser::Parser (C++ function)</a>
+</li>
+      <li><a href="api/parser.html#_CPPv4N6Parser5rulesE">Parser::rules (C++ member)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv410ParserRule">ParserRule (C++ struct)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N10ParserRule4leftE">ParserRule::left (C++ member)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N10ParserRule5rightE">ParserRule::right (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/rules.html#_CPPv45Rules">Rules (C++ struct)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/rules.html#_CPPv4N5Rules11lexer_rulesE">Rules::lexer_rules (C++ member)</a>
+</li>
+      <li><a href="api/rules.html#_CPPv4N5Rules12parser_rulesE">Rules::parser_rules (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/rules.html#_CPPv49symbol_id">symbol_id (C++ type)</a>
 </li>
   </ul></td>
 </tr></table>
