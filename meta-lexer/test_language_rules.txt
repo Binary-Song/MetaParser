@@ -5,8 +5,7 @@ mult       := [*]
 space      := \s+ 
 error      := .
 
-===
 
-E -> T add T
+S -> T add T
 T -> F mult F
 F -> E
