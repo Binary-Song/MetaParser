@@ -26,13 +26,13 @@ int main()
     // 输出所有符号
     std::cout << "listing all symbols:\n";
 
-    for (auto &&name_id_pair : resolver.symbol_name_to_id)
+    for (auto &&name_id_pair : resolver.symbol_id_to_name)
     {
-        std::string name = name_id_pair.first;
-        symbol_id id = name_id_pair.second;
+        std::string name = name_id_pair.second;
+        symbol_id id = name_id_pair.first;
 
-        std::cout << "id = " << id << ", name = " << name << ", ";
-        std::cout << "type = ";
+        std::cout <<"id=" <<id<<"\t" <<name << "\t";
+        std::cout << "type=";
         if (is_termin(id))
             std::cout << "terminal" << std::endl;
         else if (is_non_termin(id))
@@ -44,7 +44,8 @@ int main()
     // 用词法规则创建词法分析器
     Lexer lexer(rules.lexer_rules);
     // 读取文件到字符串，它是我们要编译的“代码”
-    std::string test_code = read_file_into_string(__FILE__ "/../code1.txt");
+    const char * file_path = __FILE__ "/../code1.txt";
+    std::string test_code = read_file_into_string(file_path);
 
     std::vector<Token> tokens;
     // 词法分析
@@ -69,7 +70,7 @@ int main()
             test_code.begin() + token.end);  // token.end 是单词的结尾后一个字符test_code中的下标（从0开始）
 
         // 输出单词和对应类型
-        std::cout << token_content << ": " << resolver.symbol_name(token.id) << std::endl;
+        std::cout << "`"<<token_content << "`\t" << resolver.symbol_name(token.id) << std::endl;
     }
 
     // 遍历每个符号

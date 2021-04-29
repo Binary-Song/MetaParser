@@ -42,7 +42,6 @@ struct LexerRule
     LexerRule(symbol_id id = 0) : token_id(id) {}
 
     /// 指定id和正则表达式，构造词法规则。涉及将regex字符串编译为自动机，耗时慎用。
-    /// @param
     LexerRule(symbol_id id, std::string const &pattern) : token_id(id), reg(pattern) {}
 };
 
