@@ -3,9 +3,7 @@
 
 #include <rules.hpp>
 
-/// 单词。所有单词都属于一个终结符。每个终结符表示一类的单词。
-/// 如：number := [0-9]+ 为终结符
-/// 123 为单词。
+/// 单词。所有单词都属于一个终结符。每个终结符表示一类的单词。如：number 为终结符，123 为单词。
 struct Token
 {
 public:
@@ -20,7 +18,7 @@ public:
         : id(id), begin(begin), end(end) {}
 };      
       
-/// 词法分析器
+/// 词法分析器。
 class Lexer
 {
 
@@ -28,14 +26,17 @@ class Lexer
 
 public:
 
-    /// 诊断信息，由analyze写入
+    /// 诊断信息，由 @ref analyze 写入。
     std::string diag_msg;
 
-    /// 给定语言的词法规则，构造词法分析器
+    /// 给定语言的词法规则集，构造词法分析器。
     Lexer(std::vector<LexerRule> const &rules)
         : rules(rules) {}
 
-    /// 进行词法分析，输出单词序列（tokens），返回错误代码。0表示成功，其他值表示失败
+    /// 进行词法分析，输出单词序列（tokens）。返回错误代码。0表示成功，其他值表示失败。
+    /// @param str 待分析的输入。
+    /// @param[out] tokens 输出的单词序列。
+    /// @return 错误代码。0表示成功，其他值表示失败。
     int analyze(std::string const &str, std::vector<Token> &tokens);
 };
 #endif // _META-LEXER_H_

@@ -9,7 +9,7 @@
 /// 符号（分为终结符或非终结符）的id是一个32位整数,
 /// 正的id表示非终结符(non-terminal)
 /// 负的id表示终结符(token或terminal)
-/// id为0表示空
+/// id为0表示空。
 using symbol_id = std::int32_t;
 
 /// 返回符号是否为终结符
@@ -25,10 +25,10 @@ inline bool is_non_termin(symbol_id sid)
 }
 
 /// 空的id
-const symbol_id nil_id = 0;
+static const symbol_id nil_id = 0;
 
 /// 文件结尾的id
-const symbol_id eof_id = -1;
+static const symbol_id eof_id = -1;
 
 /// 词法规则。包含正则表达式和对应的终结符
 struct LexerRule
@@ -38,9 +38,11 @@ struct LexerRule
     /// 正则
     std::regex reg;
 
-    /// 默认构造，指定id
+    /// 指定id，构造词法规则
     LexerRule(symbol_id id = 0) : token_id(id) {}
+
     /// 指定id和正则表达式，构造词法规则。涉及将regex字符串编译为自动机，耗时慎用。
+    /// @param
     LexerRule(symbol_id id, std::string const &pattern) : token_id(id), reg(pattern) {}
 };
 

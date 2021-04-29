@@ -1,6 +1,6 @@
 #include <meta-parser.hpp>
 
-void Parser::_compute_follow_set() 
+void Parser::compute_follow_set() 
 {
 
 }
