@@ -220,10 +220,6 @@
 <dt id="_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE">
 <span id="_CPPv3N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="_CPPv2N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="LexerRule::LexerRule__symbol_id.ssCR"></span><span class="target" id="struct_lexer_rule_1a0b6dfde41bd1660a6981347964fd250f"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">LexerRule</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">pattern</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>指定id和正则表达式，构造词法规则。涉及将regex字符串编译为自动机，耗时慎用。 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Param </dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -281,6 +277,30 @@
 <dt id="_CPPv4N5Rules12parser_rulesE">
 <span id="_CPPv3N5Rules12parser_rulesE"></span><span id="_CPPv2N5Rules12parser_rulesE"></span><span id="Rules::parser_rules__std::vector:ParserRule:"></span><span class="target" id="struct_rules_1a35f5d7d4a460b06571a623f5b6da9e8c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv410ParserRule" title="ParserRule"><span class="pre">ParserRule</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">parser_rules</span></code><a class="headerlink" href="#_CPPv4N5Rules12parser_rulesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>语法规则集 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules17symbol_id_to_nameE">
+<span id="_CPPv3N5Rules17symbol_id_to_nameE"></span><span id="_CPPv2N5Rules17symbol_id_to_nameE"></span><span id="Rules::symbol_id_to_name__std::map:symbol_id.ss:"></span><span class="target" id="struct_rules_1addd62afefb90e678088a1f9eafc2c7b6"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_id_to_name</span></code><a class="headerlink" href="#_CPPv4N5Rules17symbol_id_to_nameE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>符号的id到符号名称的映射，便于通过id查找符号名。id为k的符号，名称为 <a class="reference internal" href="#struct_rules_1addd62afefb90e678088a1f9eafc2c7b6"><span class="std std-ref">symbol_id_to_name</span></a> [k]。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules17symbol_name_to_idE">
+<span id="_CPPv3N5Rules17symbol_name_to_idE"></span><span id="_CPPv2N5Rules17symbol_name_to_idE"></span><span id="Rules::symbol_name_to_id__std::map:ss.symbol_id:"></span><span class="target" id="struct_rules_1ae6542b3e8dc035e64411ae9432ea570d"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_name_to_id</span></code><a class="headerlink" href="#_CPPv4N5Rules17symbol_name_to_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>符号的名称到符号id的映射，便于通过符号名查找id，id为 <a class="reference internal" href="#struct_rules_1ae6542b3e8dc035e64411ae9432ea570d"><span class="std std-ref">symbol_name_to_id</span></a> [k]。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules14terminal_countE">
+<span id="_CPPv3N5Rules14terminal_countE"></span><span id="_CPPv2N5Rules14terminal_countE"></span><span id="Rules::terminal_count__i"></span><span class="target" id="struct_rules_1a0edbf7ca994ddefad3e15c2e97ff7769"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">terminal_count</span></code> <span class="pre">=</span> <span class="pre">-</span><span class="pre">1</span><a class="headerlink" href="#_CPPv4N5Rules14terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>终结符数量 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Rules18non_terminal_countE">
+<span id="_CPPv3N5Rules18non_terminal_countE"></span><span id="_CPPv2N5Rules18non_terminal_countE"></span><span id="Rules::non_terminal_count__i"></span><span class="target" id="struct_rules_1a304b7f3947871246c6683548fe29c444"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">non_terminal_count</span></code> <span class="pre">=</span> <span class="pre">-</span><span class="pre">1</span><a class="headerlink" href="#_CPPv4N5Rules18non_terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>非终结符数量 </p>
 </dd></dl>
 
 </div>
