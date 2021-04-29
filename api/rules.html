@@ -88,7 +88,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">欢迎阅读 MetaParser 项目API文档</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="input.html">规则输入解析器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inrslv.html">输入文件解析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lexer.html">词法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parser.html">语法分析器</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">规则</a></li>
@@ -170,7 +170,7 @@
 <dl class="cpp type">
 <dt id="_CPPv49symbol_id">
 <span id="_CPPv39symbol_id"></span><span id="_CPPv29symbol_id"></span><span class="target" id="rules_8hpp_1a5c5dd6d289be5fc53e93dfcd6f87d60c"></span><em class="property"><span class="pre">using</span> </em><code class="sig-name descname"><span class="pre">symbol_id</span></code> <span class="pre">=</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">int32_t</span><a class="headerlink" href="#_CPPv49symbol_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号（分为终结符或非终结符）的id是一个32位整数, 正的id表示非终结符(non-terminal) 负的id表示终结符(token或terminal) id为0表示空 </p>
+<dd><p>符号（分为终结符或非终结符）的id是一个32位整数, 正的id表示非终结符(non-terminal) 负的id表示终结符(token或terminal) id为0表示空。 </p>
 </dd></dl>
 
 </div>
@@ -189,6 +189,21 @@
 </dd></dl>
 
 </div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv46nil_id">
+<span id="_CPPv36nil_id"></span><span id="_CPPv26nil_id"></span><span id="nil_id__symbol_idC"></span><span class="target" id="rules_8hpp_1a21c481f78f3b910a50f7434e248b13f7"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">nil_id</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv46nil_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>空的id </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv46eof_id">
+<span id="_CPPv36eof_id"></span><span id="_CPPv26eof_id"></span><span id="eof_id__symbol_idC"></span><span class="target" id="rules_8hpp_1ac86ebf120ffe81b6f4825ae8af2ce4ca"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">eof_id</span></code> <span class="pre">=</span> <span class="pre">-</span><span class="pre">1</span><a class="headerlink" href="#_CPPv46eof_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>文件结尾的id </p>
+</dd></dl>
+
+</div>
 <dl class="cpp struct">
 <dt id="_CPPv49LexerRule">
 <span id="_CPPv39LexerRule"></span><span id="_CPPv29LexerRule"></span><span id="LexerRule"></span><span class="target" id="struct_lexer_rule"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">LexerRule</span></code><a class="headerlink" href="#_CPPv49LexerRule" title="Permalink to this definition">¶</a><br /></dt>
@@ -198,13 +213,17 @@
 <dl class="cpp function">
 <dt id="_CPPv4N9LexerRule9LexerRuleE9symbol_id">
 <span id="_CPPv3N9LexerRule9LexerRuleE9symbol_id"></span><span id="_CPPv2N9LexerRule9LexerRuleE9symbol_id"></span><span id="LexerRule::LexerRule__symbol_id"></span><span class="target" id="struct_lexer_rule_1abfad074ff90156969f66167519790943"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">LexerRule</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LexerRule9LexerRuleE9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>默认构造，指定id </p>
+<dd><p>指定id，构造词法规则 </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE">
 <span id="_CPPv3N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="_CPPv2N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE"></span><span id="LexerRule::LexerRule__symbol_id.ssCR"></span><span class="target" id="struct_lexer_rule_1a0b6dfde41bd1660a6981347964fd250f"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">LexerRule</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">pattern</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LexerRule9LexerRuleE9symbol_idRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>指定id和正则表达式，构造词法规则。涉及将regex字符串编译为自动机，耗时慎用。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param </dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
 </dd></dl>
 
 </div>

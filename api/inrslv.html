@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>规则输入解析器 &mdash; MetaParser  documentation</title>
+  <title>输入文件解析器 &mdash; MetaParser  documentation</title>
   
 
   
@@ -89,7 +89,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">欢迎阅读 MetaParser 项目API文档</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">规则输入解析器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">输入文件解析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lexer.html">词法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parser.html">语法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rules.html">规则</a></li>
@@ -145,13 +145,13 @@
         
           <li><a href="index.html">API</a> &raquo;</li>
         
-      <li>规则输入解析器</li>
+      <li>输入文件解析器</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/api/input.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/inrslv.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -165,28 +165,48 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api-input">
-<span id="id1"></span><h1>规则输入解析器<a class="headerlink" href="#api-input" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>输入文件解析器<a class="headerlink" href="#api-input" title="Permalink to this headline">¶</a></h1>
 <dl class="cpp class">
 <dt id="_CPPv417InputFileResolver">
 <span id="_CPPv317InputFileResolver"></span><span id="_CPPv217InputFileResolver"></span><span id="InputFileResolver"></span><span class="target" id="class_input_file_resolver"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">InputFileResolver</span></code><a class="headerlink" href="#_CPPv417InputFileResolver" title="Permalink to this definition">¶</a><br /></dt>
-<dd><em>#include &lt;input-resolver.hpp&gt;</em><div class="breathe-sectiondef docutils container">
+<dd><em>#include &lt;input-resolver.hpp&gt;</em><p>输入文件解析器。 <a class="reference internal" href="#class_input_file_resolver"><span class="std std-ref">InputFileResolver</span></a> 能将以规定格式写成的文件解析成 <a class="reference internal" href="rules.html#struct_rules"><span class="std std-ref">Rules</span></a> 对象。调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 来解析文件，每个对象只能调用一次这个函数。 </p>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver17InputFileResolverEv">
 <span id="_CPPv3N17InputFileResolver17InputFileResolverEv"></span><span id="_CPPv2N17InputFileResolver17InputFileResolverEv"></span><span id="InputFileResolver::InputFileResolver"></span><span class="target" id="class_input_file_resolver_1a23fdb93f3fade4339b6f279f522c2fb0"></span><code class="sig-name descname"><span class="pre">InputFileResolver</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver17InputFileResolverEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>构造涉及正则表达式的编译，较耗时，应避免拷贝本类对象。 </p>
+<dd><p>构造涉及正则表达式的编译，较耗时，应谨慎拷贝本类对象。 </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver18resolve_input_fileEPKcR5Rules">
-<span id="_CPPv3N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="_CPPv2N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="InputFileResolver::resolve_input_file__cCP.RulesR"></span><span class="target" id="class_input_file_resolver_1a36708a20e30653fed31d1733a06d0902"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">resolve_input_file</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">file_name</span></em>, <a class="reference internal" href="rules.html#_CPPv45Rules" title="Rules"><span class="pre">Rules</span></a> <span class="pre">&amp;</span><em><span class="pre">result</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18resolve_input_fileEPKcR5Rules" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>读取输入文件，输出各种规则(放在result中)。如果发生错误，返回错误数量（0为成功），诊断信息存放在full_diag_msg中。每个对象只能调用一次。 </p>
+<span id="_CPPv3N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="_CPPv2N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="InputFileResolver::resolve_input_file__cCP.RulesR"></span><span class="target" id="class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">resolve_input_file</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">file_name</span></em>, <a class="reference internal" href="rules.html#_CPPv45Rules" title="Rules"><span class="pre">Rules</span></a> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18resolve_input_fileEPKcR5Rules" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>读取输入文件，输出各种规则(放在 rules 中)。如果发生错误，返回错误数量（0为成功），诊断信息存放在full_diag_msg中。每个对象只能调用一次。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – 输入文件的路径 </p></li>
+<li><p><strong>rules</strong> – <strong>[out]</strong> 输出的规则集 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>错误数量（0为成功） </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver11symbol_nameE9symbol_id">
 <span id="_CPPv3N17InputFileResolver11symbol_nameE9symbol_id"></span><span id="_CPPv2N17InputFileResolver11symbol_nameE9symbol_id"></span><span id="InputFileResolver::symbol_name__symbol_id"></span><span class="target" id="class_input_file_resolver_1a24fa4816a859abded52bd11e54eebf08"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">symbol_name</span></code><span class="sig-paren">(</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">sid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver11symbol_nameE9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>返回符号的名称。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sid</strong> – 符号的id </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>符号的名称 </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -195,13 +215,25 @@
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver4usedE">
 <span id="_CPPv3N17InputFileResolver4usedE"></span><span id="_CPPv2N17InputFileResolver4usedE"></span><span id="InputFileResolver::used__b"></span><span class="target" id="class_input_file_resolver_1a686d634630086fe542ce92989a2432b1"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">used</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N17InputFileResolver4usedE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>是否被使用过了 </p>
+<dd><p>指示这个对象是否调用过 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 了。 </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver13full_diag_msgE">
 <span id="_CPPv3N17InputFileResolver13full_diag_msgE"></span><span id="_CPPv2N17InputFileResolver13full_diag_msgE"></span><span id="InputFileResolver::full_diag_msg__ss"></span><span class="target" id="class_input_file_resolver_1afeacb0485e48f4b69bdd71e8490e40ea"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">full_diag_msg</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver13full_diag_msgE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>诊断信息，由resolve_input_file负责写入。 </p>
+<dd><p>诊断信息，由 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 负责写入。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N17InputFileResolver14terminal_countE">
+<span id="_CPPv3N17InputFileResolver14terminal_countE"></span><span id="_CPPv2N17InputFileResolver14terminal_countE"></span><span id="InputFileResolver::terminal_count__i"></span><span class="target" id="class_input_file_resolver_1ab0d189906779055df616c8723855e422"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">terminal_count</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N17InputFileResolver14terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>终结符数量 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N17InputFileResolver18non_terminal_countE">
+<span id="_CPPv3N17InputFileResolver18non_terminal_countE"></span><span id="_CPPv2N17InputFileResolver18non_terminal_countE"></span><span id="InputFileResolver::non_terminal_count__i"></span><span class="target" id="class_input_file_resolver_1ac27ce369fb136e118ff953e37782a61c"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">non_terminal_count</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18non_terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>非终结符数量 </p>
 </dd></dl>
 
 <dl class="cpp var">

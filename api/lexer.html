@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="语法分析器" href="parser.html" />
-    <link rel="prev" title="规则输入解析器" href="input.html" /> 
+    <link rel="prev" title="输入文件解析器" href="inrslv.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,7 +89,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">欢迎阅读 MetaParser 项目API文档</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="input.html">规则输入解析器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inrslv.html">输入文件解析器</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">词法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parser.html">语法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rules.html">规则</a></li>
@@ -169,7 +169,7 @@
 <dl class="cpp struct">
 <dt id="_CPPv45Token">
 <span id="_CPPv35Token"></span><span id="_CPPv25Token"></span><span id="Token"></span><span class="target" id="struct_token"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Token</span></code><a class="headerlink" href="#_CPPv45Token" title="Permalink to this definition">¶</a><br /></dt>
-<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>单词。所有单词都属于一个终结符。每个终结符表示一类的单词。 如：number := [0-9]+ 为终结符 123 为单词。 </p>
+<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>单词。所有单词都属于一个终结符。每个终结符表示一类的单词。如：number 为终结符，123 为单词。 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
@@ -204,34 +204,39 @@
 <dl class="cpp class">
 <dt id="_CPPv45Lexer">
 <span id="_CPPv35Lexer"></span><span id="_CPPv25Lexer"></span><span id="Lexer"></span><span class="target" id="class_lexer"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Lexer</span></code><a class="headerlink" href="#_CPPv45Lexer" title="Permalink to this definition">¶</a><br /></dt>
-<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>词法分析器 </p>
+<dd><em>#include &lt;meta-lexer.hpp&gt;</em><p>词法分析器。 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE">
 <span id="_CPPv3N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="_CPPv2N5Lexer5LexerERKNSt6vectorI9LexerRuleEE"></span><span id="Lexer::Lexer__std::vector:LexerRule:CR"></span><span class="target" id="class_lexer_1a8326b816e8f05350db34aa3159416d80"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Lexer</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49LexerRule" title="LexerRule"><span class="pre">LexerRule</span></a><span class="pre">&gt;</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer5LexerERKNSt6vectorI9LexerRuleEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>给定语言的词法规则，构造词法分析器 </p>
+<dd><p>给定语言的词法规则集，构造词法分析器。 </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE">
 <span id="_CPPv3N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE"></span><span id="_CPPv2N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE"></span><span id="Lexer::analyze__ssCR.std::vector:Token:R"></span><span class="target" id="class_lexer_1ab274c8fcad2e95dac085769f1eb0dd1e"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">analyze</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">str</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv45Token" title="Token"><span class="pre">Token</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">tokens</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Lexer7analyzeERKNSt6stringERNSt6vectorI5TokenEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>进行词法分析，输出单词序列（tokens），返回错误代码。0表示成功，其他值表示失败 </p>
+<dd><p>进行词法分析，输出单词序列（tokens）。返回错误代码。0表示成功，其他值表示失败。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> – 待分析的输入。 </p></li>
+<li><p><strong>tokens</strong> – <strong>[out]</strong> 输出的单词序列。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>错误代码。0表示成功，其他值表示失败。 </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N5Lexer7add_eofE">
-<span id="_CPPv3N5Lexer7add_eofE"></span><span id="_CPPv2N5Lexer7add_eofE"></span><span id="Lexer::add_eof__b"></span><span class="target" id="class_lexer_1a61e76646400db8c3e5c0caaf30ab0d17"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">add_eof</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N5Lexer7add_eofE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>是否添加文件终结符 </p>
-</dd></dl>
-
-<dl class="cpp var">
 <dt id="_CPPv4N5Lexer8diag_msgE">
 <span id="_CPPv3N5Lexer8diag_msgE"></span><span id="_CPPv2N5Lexer8diag_msgE"></span><span id="Lexer::diag_msg__ss"></span><span class="target" id="class_lexer_1aaac44076fa30f611a5eee021ef864f41"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">diag_msg</span></code><a class="headerlink" href="#_CPPv4N5Lexer8diag_msgE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>诊断信息，由analyze写入 </p>
+<dd><p>诊断信息，由 <a class="reference internal" href="#class_lexer_1ab274c8fcad2e95dac085769f1eb0dd1e"><span class="std std-ref">analyze</span></a> 写入。 </p>
 </dd></dl>
 
 </div>
@@ -254,7 +259,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="parser.html" class="btn btn-neutral float-right" title="语法分析器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="input.html" class="btn btn-neutral float-left" title="规则输入解析器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inrslv.html" class="btn btn-neutral float-left" title="输入文件解析器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
