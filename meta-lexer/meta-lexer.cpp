@@ -4,6 +4,7 @@ struct char_pos
     int line;
     int column;
 };
+
 char_pos get_line_no(std::string const &str, std::string::const_iterator target)
 {
     int line = 1;
@@ -27,6 +28,7 @@ char_pos get_line_no(std::string const &str, std::string::const_iterator target)
     pos.line = line;
     return pos;
 }
+
 int Lexer::analyze(std::string const &str, std::vector<Token> &tokens)
 {
     auto target_start = str.begin();
@@ -53,5 +55,7 @@ int Lexer::analyze(std::string const &str, std::vector<Token> &tokens)
             return 1;
         }
     }
+    // 添加eof记号
+    tokens.push_back(Token(eof_id, str.end() - str.begin(), str.end() - str.begin()));
     return 0;
 }

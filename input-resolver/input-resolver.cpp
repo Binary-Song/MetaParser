@@ -32,8 +32,12 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
         throw "This function can only be used once for each object!";
 
     // 提前定义好“空“为正斜杠
-    symbol_name_to_id["/"] = 0;
-    symbol_id_to_name[0] = "/";
+    symbol_name_to_id["/"] = nil_id;
+    symbol_id_to_name[nil_id] = "/";
+
+    // 再定义文件结尾EOF
+    symbol_name_to_id["EOF"] = eof_id;
+    symbol_id_to_name[eof_id] = "EOF";
 
     // 准备读文件
     std::ifstream file{file_name};
