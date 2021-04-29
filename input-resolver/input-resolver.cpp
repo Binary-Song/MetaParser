@@ -112,7 +112,7 @@ int InputFileResolver::_handle_lexer_rule(std::string const &line, Rules &result
     }
 
     // 自动增加的id
-    symbol_id id = -((symbol_id)result.lexer_rules.size() + 1);
+    symbol_id id = -((symbol_id)result.lexer_rules.size() + 2);
 
     // 构造新的词法规则
     LexerRule new_rule;
