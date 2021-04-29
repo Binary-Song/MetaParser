@@ -2,10 +2,15 @@
 ======================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: 目录:
+   :maxdepth: 3
+   :caption: Contents:
+
+
+Table of Contents
+^^^^^^^^^^^^^^^^^
    
-   api/rules
-   api/input 
-   api/lexer
-   api/parser
+.. toctree::
+   :maxdepth: 2
+
+   self
+   api/index
