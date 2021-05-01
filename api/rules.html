@@ -166,7 +166,7 @@
   <div class="section" id="api-rules">
 <span id="id1"></span><h1>语言规则<a class="headerlink" href="#api-rules" title="Permalink to this headline">¶</a></h1>
 <p>语言的规则文件经过解析器处理后得到一个语言规则对象Rules。在Rules对象中，所有的符号均被给予id，之后的操作只需对id进行处理。当然，Rules对象也提供了必要的信息以便将id重新转换回符号名。</p>
-<p>语言的符号包括终结符和非终结符，符号的id是一个32位整数。</p>
+<p>语言的符号包括终结符、非终结符和空（ε），符号的id是一个32位整数。</p>
 <ul class="simple">
 <li><p>正的id表示非终结符；</p></li>
 <li><p>负的id表示终结符；</p></li>
@@ -202,13 +202,13 @@
 <dl class="cpp var">
 <dt id="_CPPv46nil_id">
 <span id="_CPPv36nil_id"></span><span id="_CPPv26nil_id"></span><span id="nil_id__symbol_idC"></span><span class="target" id="rules_8hpp_1a21c481f78f3b910a50f7434e248b13f7"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">nil_id</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv46nil_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>空的id </p>
+<dd><p>ε的id. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv46eof_id">
 <span id="_CPPv36eof_id"></span><span id="_CPPv26eof_id"></span><span id="eof_id__symbol_idC"></span><span class="target" id="rules_8hpp_1ac86ebf120ffe81b6f4825ae8af2ce4ca"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">eof_id</span></code> <span class="pre">=</span> <span class="pre">-</span><span class="pre">1</span><a class="headerlink" href="#_CPPv46eof_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>文件结尾的id </p>
+<dd><p>文件结尾eof的id </p>
 </dd></dl>
 
 </div>

@@ -159,8 +159,8 @@
 <h1>欢迎阅读 MetaParser 项目API文档<a class="headerlink" href="#metaparser-api" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>目录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">欢迎阅读 MetaParser 项目API文档</a></li>
@@ -172,6 +172,127 @@
 </ul>
 </li>
 </ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2021.5.1 更新日志<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>目前求FOLLOW集的函数我已经写完，然而gitee上还没有看到大家的贡献记录。凭我一人之力无法完成整个项目，也无法代大家完成答辩，所以还请大家加快进度。</p>
+<p>为了帮助大家完成各自的任务，我再次丰富完善了本文档和代码注释，并更新了语法分析器类的API，使之包含更多必要的信息来求各种集合。如果不知道follow</p>
+<div class="section" id="eof">
+<h3>更新对eof的处理<a class="headerlink" href="#eof" title="Permalink to this headline">¶</a></h3>
+<p>eof是一个自动定义的**终结符**。输入解析器在解析规则文件时，会自动定义符号eof的id为-1，其名称为 <code class="docutils literal notranslate"><span class="pre">$eof</span></code> （为了避免与用户定义的符号名冲突，特地在前面加了一个 <code class="docutils literal notranslate"><span class="pre">$</span></code>  ）。另一个默认定义的符号是ε，id为0，名称为 <code class="docutils literal notranslate"><span class="pre">/</span></code>。</p>
+<p>词法分析器在将代码输入转化成单词序列时，也会在末尾添加一个 eof 。</p>
+<p>之后提到终结符时，都包括eof。这个符号一般不需要特殊的处理，把它当作正常的终结符即可。</p>
+<p>举个例子，假设用户给出的规则文件包含3个终结符t1,t2,t3的定义和3个非终结符N1,N2,N3的定义，那么最终的符号id-符号名称的对应关系为：</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>名称</p></td>
+</tr>
+<tr class="row-even"><td><p>-4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>-3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>-2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>-1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$eof</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">N1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">N2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">N3</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>此时，InputResolver输出的Rules对象的terminal_count为4，non_terminal_count为3（见下文）。</p>
+</div>
+<div class="section" id="parserrulesrules-rules">
+<h3>Parser类的rules成员的类型改为Rules，并在Rules中添加成员<a class="headerlink" href="#parserrulesrules-rules" title="Permalink to this headline">¶</a></h3>
+<p>Parser类的rules成员原本的类型为std::vector&lt;ParserRule&gt;，即一个产生式的列表。然而Parser只有此信息不方便遍历终结符和非终结符。因此，我将rules的类型改为Rules，并在Rules类中添加了几个成员。现在，Rules类型包含以下几个数据成员：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">/// 词法规则集</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">LexerRule</span><span class="o">&gt;</span> <span class="n">lexer_rules</span><span class="p">;</span>
+<span class="c1">/// 语法规则集</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ParserRule</span><span class="o">&gt;</span> <span class="n">parser_rules</span><span class="p">;</span>
+
+<span class="c1">/// 符号的id到符号名称的映射，便于通过id查找符号名。id为ID的符号，其名称为 @ref symbol_id_to_name [ID]。</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">symbol_id</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">symbol_id_to_name</span><span class="p">;</span>
+
+<span class="c1">/// 符号的名称到符号id的映射，便于通过符号名查找id，名称为name的符号，其id为 @ref symbol_name_to_id [name]。</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">symbol_id</span><span class="o">&gt;</span> <span class="n">symbol_name_to_id</span><span class="p">;</span>
+
+<span class="c1">/// 终结符数量（包括eof）</span>
+<span class="kt">int</span> <span class="n">terminal_count</span><span class="p">;</span>
+
+<span class="c1">/// 非终结符数量</span>
+<span class="kt">int</span> <span class="n">non_terminal_count</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>此外，还加入了两个方便的成员函数，便于id和name的互转。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_name</span><span class="p">(</span><span class="n">symbol_id</span> <span class="n">id</span><span class="p">);</span> <span class="c1">// id 转 name</span>
+
+<span class="n">symbol_id</span> <span class="n">to_id</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">;</span> <span class="c1">// name 转 id</span>
+</pre></div>
+</div>
+<p>这样，若按id从小到大的顺序遍历所有符号，只需：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="nl">pair</span> <span class="p">:</span> <span class="n">rules</span><span class="p">.</span><span class="n">symbol_id_to_name</span><span class="p">)</span> <span class="c1">// 关于 c++11 的 `range-based for 循环` 和 `auto自动推断类型`，请参看百度。</span>
+<span class="p">{</span>
+   <span class="n">symbol_id</span> <span class="n">id</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// 符号的id</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span> <span class="c1">// 符号的名称</span>
+   <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>即可。</p>
+<p>若要遍历所有终结符（包括eof），可以用以下代码：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">-</span> <span class="n">rules</span><span class="p">.</span><span class="n">terminal_count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">-1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// i ∈ [-terminal_count, -1]</span>
+<span class="p">{</span>
+   <span class="n">symbol_id</span> <span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 符号的id</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">rules</span><span class="p">.</span><span class="n">to_name</span><span class="p">(</span><span class="n">id</span><span class="p">);</span> <span class="c1">// 符号的名称</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>若要遍历所有非终结符，可以用以下代码：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">rules</span><span class="p">.</span><span class="n">non_terminal_count</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// i ∈ [1, non_terminal_count]</span>
+<span class="p">{</span>
+   <span class="n">symbol_id</span> <span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 符号的id</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">rules</span><span class="p">.</span><span class="n">to_name</span><span class="p">(</span><span class="n">id</span><span class="p">);</span> <span class="c1">// 符号的名称</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="empty-derivingsfirst-set">
+<h3>更新对empty_derivings和first_set的定义<a class="headerlink" href="#empty-derivingsfirst-set" title="Permalink to this headline">¶</a></h3>
+<p>为了加速后续处理，对empty_derivings和first_set进行了合理的拓展定义。现在定义 <strong>每一个符号，包括终结符、非终结符和ε，都要定义empty_derivings和first_set</strong> ，具体的定义可以参看“语法分析器”栏目，这里简述如下：</p>
+<p>针对empty_derivings：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>约定终结符 <strong>不能</strong> 推出空（i&lt;0 蕴含 empty_derivings[i]=0）； ε <strong>能</strong> 推出空（empty_derivings[0]=1）。</p></li>
+<li><p>非终结符的定义不变。</p></li>
+</ul>
+</div></blockquote>
+<p>针对first_set：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>约定 ε 的FIRST集合是 {ε}（first_set[0]={0}）。</p></li>
+<li><p>终结符 t 的FIRST集合是 {t} （i&lt;0 蕴含 first_set[i]={i}）。</p></li>
+<li><p>非终结符 t 的FIRST集合定义不变。</p></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 </div>

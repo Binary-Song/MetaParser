@@ -221,12 +221,20 @@
 <dt id="_CPPv4N6Parser15empty_derivingsE">
 <span id="_CPPv3N6Parser15empty_derivingsE"></span><span id="_CPPv2N6Parser15empty_derivingsE"></span><span id="Parser::empty_derivings__std::map:symbol_id.std::int8_t:"></span><span class="target" id="class_parser_1aeee2d48136b8e2cc9b8f70f597d9625c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">int8_t</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">empty_derivings</span></code><a class="headerlink" href="#_CPPv4N6Parser15empty_derivingsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><a class="reference internal" href="#class_parser_1ad529ab5f3c7c7231cdc2abfa39192ba6"><span class="std std-ref">compute_empty_deriving_symbols</span></a> 的结果。假设非终结符N的id为i，则 <a class="reference internal" href="#class_parser_1aeee2d48136b8e2cc9b8f70f597d9625c"><span class="std std-ref">empty_derivings</span></a> [i] 表示N是否能经过一步或多步推导出空。0表示不能，1表示能。 </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>约定终结符 <strong>不能</strong> 推出空； <a class="reference internal" href="rules.html#rules_8hpp_1a21c481f78f3b910a50f7434e248b13f7"><span class="std std-ref">ε</span></a> <strong>能</strong> 推出空。 </p>
+</div>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N6Parser9first_setE">
 <span id="_CPPv3N6Parser9first_setE"></span><span id="_CPPv2N6Parser9first_setE"></span><span id="Parser::first_set__std::map:symbol_id.std::set:symbol_id::"></span><span class="target" id="class_parser_1a42cc0b457a357ff23a6f4819a3fa9469"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">first_set</span></code><a class="headerlink" href="#_CPPv4N6Parser9first_setE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p><a class="reference internal" href="#class_parser_1a7b4d15ac0d05a2494f9546bdf501ab89"><span class="std std-ref">compute_first_set</span></a> 的结果。假设符号X的id为i，则 <a class="reference internal" href="#class_parser_1a42cc0b457a357ff23a6f4819a3fa9469"><span class="std std-ref">first_set</span></a> [i] 是X的FIRST集。 X既可以是终结符也可以是非终结符。终结符的FIRST集合就是自己。 </p>
+<dd><p><a class="reference internal" href="#class_parser_1a7b4d15ac0d05a2494f9546bdf501ab89"><span class="std std-ref">compute_first_set</span></a> 的结果。假设符号X的id为i，则 <a class="reference internal" href="#class_parser_1a42cc0b457a357ff23a6f4819a3fa9469"><span class="std std-ref">first_set</span></a> [i] 是X的FIRST集。 X既可以是终结符也可以是非终结符。终结符的FIRST集合就是自己。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>约定 <a class="reference internal" href="rules.html#rules_8hpp_1a21c481f78f3b910a50f7434e248b13f7"><span class="std std-ref">ε</span></a> 的FIRST集合是 {ε}。 </p>
+</div>
 </dd></dl>
 
 <dl class="cpp var">
