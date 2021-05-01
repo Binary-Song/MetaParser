@@ -87,7 +87,7 @@ void Parser::compute_follow_set()
         // 如果β能推出ε，则把FOLLOW(A)也加入FOLLOW(B)中。
         for (auto &&production : rules.parser_rules)
         {
-            print_production(rules, production);
+            // print_production(rules, production);
             for (auto &&i = production.right.cbegin(); i != production.right.cend(); i++)
             {
                 if (is_non_termin(*i))

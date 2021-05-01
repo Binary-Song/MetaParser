@@ -23,10 +23,10 @@ inline bool is_non_termin(symbol_id sid)
     return sid > 0;
 }
 
-/// 空的id
+/// ε的id
 static const symbol_id nil_id = 0;
 
-/// 文件结尾的id
+/// 文件结尾eof的id
 static const symbol_id eof_id = -1;
 
 /// 词法规则。包含正则表达式和对应的终结符
