@@ -8,10 +8,7 @@
 
 #include <stdint.h>
 
-/// 符号（分为终结符或非终结符）的id是一个32位整数,
-/// 正的id表示非终结符(non-terminal)
-/// 负的id表示终结符(token或terminal)
-/// id为0表示空。
+/// 符号（分为终结符或非终结符）的id。
 using symbol_id = std::int32_t;
 
 /// 返回符号是否为终结符
@@ -63,11 +60,11 @@ struct Rules
     std::vector<LexerRule> lexer_rules;
     /// 语法规则集
     std::vector<ParserRule> parser_rules;
-    
-    /// 符号的id到符号名称的映射，便于通过id查找符号名。id为k的符号，名称为 @ref symbol_id_to_name [k]。
+
+    /// 符号的id到符号名称的映射，便于通过id查找符号名。id为ID的符号，其名称为 @ref symbol_id_to_name [ID]。
     std::map<symbol_id, std::string> symbol_id_to_name;
 
-    /// 符号的名称到符号id的映射，便于通过符号名查找id，id为 @ref symbol_name_to_id [k]。
+    /// 符号的名称到符号id的映射，便于通过符号名查找id，名称为name的符号，其id为 @ref symbol_name_to_id [name]。
     std::map<std::string, symbol_id> symbol_name_to_id;
 
     /// 终结符数量
@@ -75,5 +72,15 @@ struct Rules
 
     /// 非终结符数量
     int non_terminal_count = -1;
+
+    std::string to_name(symbol_id id) const
+    {
+        return symbol_id_to_name.at(id);
+    }
+
+    symbol_id to_id(std::string const &name) const
+    {
+        return symbol_name_to_id.at(name);
+    }
 };
 #endif // _RULES_H_

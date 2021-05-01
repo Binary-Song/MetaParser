@@ -19,12 +19,12 @@ public:
     bool used = false;
 
     /// 诊断信息，由 @ref resolve_input_file 负责写入。
-    std::string full_diag_msg;
+    std::string diag_msg;
 
     /// 构造涉及正则表达式的编译，较耗时，应谨慎拷贝本类对象。
     InputFileResolver();
 
-    /// 读取输入文件，输出各种规则。如果发生错误，返回错误数量（0为成功），诊断信息存放在full_diag_msg中。每个对象只能调用一次。
+    /// 读取输入文件，输出各种规则。如果发生错误，返回错误数量（0为成功），诊断信息存放在diag_msg中。每个对象只能调用一次。
     /// @param file_name 输入文件的路径
     /// @param[out] rules 输出的规则集
     /// @return 错误数量（0为成功）
@@ -50,6 +50,9 @@ public:
     /// 符号的名称到符号id的映射。名称为k的符号，id为 @ref symbol_name_to_id [k]。
     std::map<std::string, symbol_id> symbol_name_to_id;
 
+    /// 发现的错误数量。
+    int errs = 0;
+
 private:
     Rules *out_rules;
 
@@ -74,6 +77,10 @@ private:
     int handle_lexer_rule(std::string const &line, std::smatch &matches);
     int handle_parser_rule_first_pass(std::string const &line, std::smatch &matches);
     int handle_parser_rule_second_pass(std::string const &line, std::smatch &matches);
+
+    void append_local_error(int errcode,std::string const &file_name,int line_no, std::string const & reason);
+
+    void append_global_error(int errcode,std::string const &file_name,  std::string const & reason); 
 };
 
 #endif // _IO_H_

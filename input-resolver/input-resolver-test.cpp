@@ -1,5 +1,3 @@
-/// @file 
-
 #include "input-resolver.hpp"
 #include <iostream>
 #include <stdlib.h>
@@ -14,7 +12,7 @@ int main()
     if (errcode)
     {
         // 若有错误，就输出错误消息，退出程序
-        std::cout << resolver.full_diag_msg << std::endl;
+        std::cout << resolver.diag_msg << std::endl;
         return 1;
     }
 

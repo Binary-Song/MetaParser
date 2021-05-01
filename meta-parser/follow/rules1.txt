@@ -1,12 +1,15 @@
-number     := [0-9]+ 
-identi     := [a-zA-Z]+
-add        := [+]
-mult       := [*]
-space      := \s+ 
-error      := .
- 
+a := a
+b := b
+c := c
+d := d 
 
-E -> T add T
-T -> F mult F
-F -> number
+S -> A B 
+S -> b C 
 A -> /
+A -> b 
+B -> /
+B -> a D 
+C -> A D 
+C -> b 
+D -> a S 
+D -> c

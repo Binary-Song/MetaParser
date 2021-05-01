@@ -16,8 +16,8 @@
 #define PERR_ILL_DECL 201
 #define PERR_DUP_DECL 203
 #define PERR_UNDEFINED 204
-#define ERR_ILL_DECL 001
-
+#define ERR_ILL_DECL 501
+#define ERR_MISSING_START 502
 std::set<std::string> left_names;
 
 InputFileResolver::InputFileResolver()
@@ -44,7 +44,7 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
 
     // 准备读文件
     std::ifstream file{file_name};
-    int errs = 0;
+
     std::string line;
 
     // 读取每一行到line中，行号为line_no
@@ -92,11 +92,16 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
             // 生成诊断信息
             if (error_code)
             {
-                full_diag_msg += "error " + std::to_string(error_code) + ": " + _diag_msg_reason + " @  " + std::string(file_name) + ":" + std::to_string(line_no) + "\n";
-                errs++;
+                append_local_error(error_code, file_name, line_no, _diag_msg_reason);
             }
         }
     }
+
+    if (non_terminal_count == 0)
+    {
+        append_global_error(ERR_MISSING_START, file_name, "starting symbol undefined");
+    }
+
     if (errs)
     {
         result = Rules();
@@ -136,6 +141,7 @@ int InputFileResolver::handle_lexer_rule(std::string const &line, std::smatch &m
     return 0;
 }
 
+/// 将字符串按空格分割成单词序列
 inline std::vector<std::string> split_into_words(std::string const &str)
 {
     std::vector<std::string> v;
@@ -148,6 +154,7 @@ inline std::vector<std::string> split_into_words(std::string const &str)
     return v;
 }
 
+/// 第一趟扫描词法规则：声明非终结符
 int InputFileResolver::handle_parser_rule_first_pass(std::string const &line, std::smatch &matches)
 {
     std::string left(matches[1].first, matches[1].second);
@@ -156,11 +163,25 @@ int InputFileResolver::handle_parser_rule_first_pass(std::string const &line, st
     return 0;
 }
 
+/// 第一趟扫描词法规则：添加规则
 int InputFileResolver::handle_parser_rule_second_pass(std::string const &line, std::smatch &matches)
 {
     std::string left_str(matches[1].first, matches[1].second);
     std::string right_str(matches[2].first, matches[2].second);
     return add_parser_rule(left_str, split_into_words(right_str));
+}
+
+/// 将错误信息写到 @ref diag_msg 末尾。并给 @ref errs 加1
+void InputFileResolver::append_local_error(int errcode, std::string const &file_name, int line_no, std::string const &reason)
+{
+    diag_msg += "error " + std::to_string(errcode) + ": " + reason + " @  " + std::string(file_name) + ":" + std::to_string(line_no) + "\n";
+    errs++;
+}
+
+void InputFileResolver::append_global_error(int code, std::string const &file_name, std::string const &reason)
+{
+    diag_msg += "error " + std::to_string(code) + ": " + reason + " @  " + std::string(file_name) + "\n";
+    errs++;
 }
 
 /// 在map中添加name和id的双向引用
