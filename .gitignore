@@ -3,3 +3,4 @@ build
 !.vscode/launch.json
 docs/html
 docs/xml
+docs/Doxyfile
