@@ -26,7 +26,7 @@ jobs:
     - name: Build docs
       run: mkdir build 
         && cmake -Bbuild -DGENERATE_DOCS:BOOL=YES
-        && cmake --build build --target Sphinx
+        && cmake --build build --target doc_sphinx
         && cd build/docs/sphinx
         && touch .nojekyll
     - name: Deploy

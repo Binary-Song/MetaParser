@@ -12,7 +12,7 @@ function(RunDoxygen)
     MAIN_DEPENDENCY                 ${DOXYFILE}
     COMMENT "Run doxygen.")
 
-    add_custom_target(docs ALL DEPENDS ${DOXYGEN_INDEX_FILE})
+    add_custom_target(doc_doxygen ALL DEPENDS ${DOXYGEN_INDEX_FILE})
 
 
 
@@ -21,12 +21,12 @@ function(RunDoxygen)
     set(SPHINX_SOURCE ${DOCS_FOLDER})
     set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/docs/sphinx)
 
-    add_custom_target(Sphinx ALL
+    add_custom_target(doc_sphinx ALL
                     COMMAND
                     ${SPHINX_EXECUTABLE} -b html
                     ${SPHINX_SOURCE} ${SPHINX_BUILD}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                    DEPENDS docs
+                    DEPENDS doc_doxygen
                     COMMENT "Generating documentation with Sphinx")
     
 endfunction(RunDoxygen)
