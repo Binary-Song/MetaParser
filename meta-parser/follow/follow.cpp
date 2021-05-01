@@ -2,61 +2,6 @@
 #include <algorithm>
 #include <iostream>
 
-// 求符号串[begin,end)的FIRST集合
-std::set<symbol_id> get_sequence_first_set(
-    std::vector<symbol_id>::const_iterator begin, std::vector<symbol_id>::const_iterator end, Parser *parser)
-{
-    // 分成几种互斥的情况，下面用标号表示
-    // 0. 当符号串长度为0时，FIRST={ε}
-    if (begin == end)
-    {
-        return std::set<symbol_id>{nil_id};
-    }
-    // 1. 第一个符号不能推出空的情况，result = FIRST(第一个符号)
-    if (parser->empty_derivings[*begin] == 0)
-    {
-        return parser->first_set[*begin];
-    }
-    // 2. 前几个符号FIRST都含空，第i个符号FIRST不含空
-    bool early_exit = false;
-    std::set<symbol_id> result;
-    for (auto i = begin; i != end; i++)
-    {
-        // result = result ∪ FIRST(符号i)
-        result.insert(parser->first_set[*i].begin(), parser->first_set[*i].end());
-        // FIRST不含空，就提前退出循环
-        if (parser->first_set[*i].count(nil_id) == 0)
-        {
-            early_exit = true;
-            break;
-        }
-    }
-    if (early_exit)
-    {
-        // p.s. 此处属于情况2
-        // 所以要去掉ε
-        // result = result - {ε}
-        result.erase(nil_id);
-        return result;
-    }
-    // 3. 所有符号FIRST含空，不用去掉ε
-    return result;
-}
-
-// 求符号串[begin,end)是否=>*ε。
-bool is_empty_deriving_sequence(
-    std::vector<symbol_id>::const_iterator begin, std::vector<symbol_id>::const_iterator end, Parser *parser)
-{
-    for (auto i = begin; i != end; i++)
-    {
-        if (parser->empty_derivings[*i] == 0)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
 void print_production(const Rules &rules, const ParserRule &production)
 {
     std::cout << rules.to_name(production.left) << "->";
@@ -93,7 +38,7 @@ void Parser::compute_follow_set()
                 if (is_non_termin(*i))
                 {
                     // 求出FIRST(β) - {ε}
-                    auto first_set_of_beta = get_sequence_first_set(i + 1, production.right.cend(), this);
+                    auto first_set_of_beta = get_sequence_first_set(i + 1, production.right.cend() );
                     first_set_of_beta.erase(nil_id);
                     // 保存insert之前的size
                     size_t size0 = follow_set[*i].size();
@@ -102,7 +47,7 @@ void Parser::compute_follow_set()
                     // 计算insert前后size的差
                     diff_size += follow_set[*i].size() - size0;
                     // 若β能推出ε
-                    if (is_empty_deriving_sequence(i + 1, production.right.cend(), this))
+                    if (is_empty_deriving_sequence(i + 1, production.right.cend() ))
                     {
                         // 保存insert之前的size
                         size_t size0 = follow_set[*i].size();
@@ -115,4 +60,57 @@ void Parser::compute_follow_set()
             }
         }
     }
+}
+
+bool Parser::is_empty_deriving_sequence(std::vector<symbol_id>::const_iterator begin,
+                                        std::vector<symbol_id>::const_iterator end)
+{
+    for (auto i = begin; i != end; i++)
+    {
+        if (this->empty_derivings[*i] == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::set<symbol_id> Parser::get_sequence_first_set(std::vector<symbol_id>::const_iterator begin,
+                                                   std::vector<symbol_id>::const_iterator end)
+{
+    // 分成几种互斥的情况，下面用标号表示
+    // 0. 当符号串长度为0时，FIRST={ε}
+    if (begin == end)
+    {
+        return std::set<symbol_id>{nil_id};
+    }
+    // 1. 第一个符号不能推出空的情况，result = FIRST(第一个符号)
+    if (this->empty_derivings[*begin] == 0)
+    {
+        return this->first_set[*begin];
+    }
+    // 2. 前几个符号FIRST都含空，第i个符号FIRST不含空
+    bool early_exit = false;
+    std::set<symbol_id> result;
+    for (auto i = begin; i != end; i++)
+    {
+        // result = result ∪ FIRST(符号i)
+        result.insert(this->first_set[*i].begin(), this->first_set[*i].end());
+        // FIRST不含空，就提前退出循环
+        if (this->first_set[*i].count(nil_id) == 0)
+        {
+            early_exit = true;
+            break;
+        }
+    }
+    if (early_exit)
+    {
+        // p.s. 此处属于情况2
+        // 所以要去掉ε
+        // result = result - {ε}
+        result.erase(nil_id);
+        return result;
+    }
+    // 3. 所有符号FIRST含空，不用去掉ε
+    return result;
 }
