@@ -175,13 +175,12 @@
 <dl class="cpp function">
 <dt id="_CPPv4N6Parser6ParserERK5Rulesb">
 <span id="_CPPv3N6Parser6ParserERK5Rulesb"></span><span id="_CPPv2N6Parser6ParserERK5Rulesb"></span><span id="Parser::Parser__RulesCR.b"></span><span class="target" id="class_parser_1a021b146e10b79d63b2b47096d4beee74"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Parser</span></code><span class="sig-paren">(</span><a class="reference internal" href="rules.html#_CPPv45Rules" title="Rules"><span class="pre">Rules</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">rules</span></em>, <span class="pre">bool</span> <em><span class="pre">compute_pred_tbl</span></em> <span class="pre">=</span> <span class="pre">true</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser6ParserERK5Rulesb" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>给定语言的语法规则，初始化语法分析器。初始化包括4步：<ol class="lowerroman simple">
-<li><p>计算能推导出空的非终结符</p></li>
-<li><p>计算first集</p></li>
-<li><p>计算follow集</p></li>
-<li><p>计算select集 </p></li>
-</ol>
-</p>
+<dd><p>给定语言的语法规则，初始化语法分析器。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>compute_pred_tbl</strong> – 若为false，将不会计算各种集合，适合手动输入first,follow和select集合。否则将调用compute_first_set等函数计算first,follow和select集合。 </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
@@ -199,13 +198,41 @@
 <dl class="cpp function">
 <dt id="_CPPv4N6Parser18compute_follow_setEv">
 <span id="_CPPv3N6Parser18compute_follow_setEv"></span><span id="_CPPv2N6Parser18compute_follow_setEv"></span><span id="Parser::compute_follow_set"></span><span class="target" id="class_parser_1aa76b5156591fcdae0b12452b2743094f"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">compute_follow_set</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser18compute_follow_setEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>计算follow集合，计算结果存放在 <a class="reference internal" href="#class_parser_1af1037fda284817c2450fbe7e07caf9fa"><span class="std std-ref">follow_set</span></a> 中。 TODO: 实现本函数 </p>
+<dd><p>计算follow集合，计算结果存放在 <a class="reference internal" href="#class_parser_1af1037fda284817c2450fbe7e07caf9fa"><span class="std std-ref">follow_set</span></a> 中。 </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N6Parser18compute_select_setEv">
 <span id="_CPPv3N6Parser18compute_select_setEv"></span><span id="_CPPv2N6Parser18compute_select_setEv"></span><span id="Parser::compute_select_set"></span><span class="target" id="class_parser_1a27f26dca92b9cace6b3193f720753cda"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">compute_select_set</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser18compute_select_setEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>计算select集合，计算结果存放在 <a class="reference internal" href="#class_parser_1a45e0a8421ad97aa9eedec7fc94c0fed7"><span class="std std-ref">select_set</span></a> 中。 TODO: 实现本函数 </p>
+<dd><p>计算select集合，计算结果存放在 <a class="reference internal" href="#class_parser_1ad05d0f6787355756a5ed92b2913de6dc"><span class="std std-ref">select_set</span></a> 中。 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser22get_sequence_first_setENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE">
+<span id="_CPPv3N6Parser22get_sequence_first_setENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE"></span><span id="_CPPv2N6Parser22get_sequence_first_setENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE"></span><span id="Parser::get_sequence_first_set__std::vector:symbol_id:::const_iterator.std::vector:symbol_id:::const_iterator"></span><span class="target" id="class_parser_1a00443c4ded8782ecd1b25c762b9acae8"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">get_sequence_first_set</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">::</span><span class="pre">const_iterator</span> <em><span class="pre">begin</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">::</span><span class="pre">const_iterator</span> <em><span class="pre">end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser22get_sequence_first_setENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>返回一个符号串α的FIRST集合。此函数调用的前提是 <a class="reference internal" href="#class_parser_1a42cc0b457a357ff23a6f4819a3fa9469"><span class="std std-ref">first_set</span></a> 已经被算出。本函数已经在follow.cpp实现。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>begin</strong> – 指向符号串α的第一个符号的迭代器 </p></li>
+<li><p><strong>end</strong> – 指向符号串α的最后一个符号再下一个符号的迭代器 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6Parser26is_empty_deriving_sequenceENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE">
+<span id="_CPPv3N6Parser26is_empty_deriving_sequenceENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE"></span><span id="_CPPv2N6Parser26is_empty_deriving_sequenceENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE"></span><span id="Parser::is_empty_deriving_sequence__std::vector:symbol_id:::const_iterator.std::vector:symbol_id:::const_iterator"></span><span class="target" id="class_parser_1a3b03d69d668c5b27f1ad091cbd5532de"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_empty_deriving_sequence</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">::</span><span class="pre">const_iterator</span> <em><span class="pre">begin</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">::</span><span class="pre">const_iterator</span> <em><span class="pre">end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Parser26is_empty_deriving_sequenceENSt6vectorI9symbol_idE14const_iteratorENSt6vectorI9symbol_idE14const_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>求符号串α是否能=&gt;*ε。此函数调用的前提是 <a class="reference internal" href="#class_parser_1aeee2d48136b8e2cc9b8f70f597d9625c"><span class="std std-ref">empty_derivings</span></a> 已经被算出。本函数已经在follow.cpp实现。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>begin</strong> – 指向符号串α的第一个符号的迭代器 </p></li>
+<li><p><strong>end</strong> – 指向符号串α的最后一个符号再下一个符号的迭代器 </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -245,8 +272,8 @@
 
 <dl class="cpp var">
 <dt id="_CPPv4N6Parser10select_setE">
-<span id="_CPPv3N6Parser10select_setE"></span><span id="_CPPv2N6Parser10select_setE"></span><span id="Parser::select_set__std::map:s.std::set:symbol_id::"></span><span class="target" id="class_parser_1a45e0a8421ad97aa9eedec7fc94c0fed7"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">size_t</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">select_set</span></code><a class="headerlink" href="#_CPPv4N6Parser10select_setE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p><a class="reference internal" href="#class_parser_1aa76b5156591fcdae0b12452b2743094f"><span class="std std-ref">compute_follow_set</span></a> 的结果。对于产生式 <a class="reference internal" href="#class_parser_1ada8d46a6f93c6c58f3ceba32c3ca2ab5"><span class="std std-ref">rules</span></a> [i]， <a class="reference internal" href="#class_parser_1a45e0a8421ad97aa9eedec7fc94c0fed7"><span class="std std-ref">select_set</span></a> [i] 是 <a class="reference internal" href="#class_parser_1ada8d46a6f93c6c58f3ceba32c3ca2ab5"><span class="std std-ref">rules</span></a> [i]的SELECT集。 </p>
+<span id="_CPPv3N6Parser10select_setE"></span><span id="_CPPv2N6Parser10select_setE"></span><span id="Parser::select_set__std::vector:std::set:symbol_id::"></span><span class="target" id="class_parser_1ad05d0f6787355756a5ed92b2913de6dc"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">select_set</span></code><a class="headerlink" href="#_CPPv4N6Parser10select_setE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="#class_parser_1aa76b5156591fcdae0b12452b2743094f"><span class="std std-ref">compute_follow_set</span></a> 的结果。对于产生式 <a class="reference internal" href="#class_parser_1ada8d46a6f93c6c58f3ceba32c3ca2ab5"><span class="std std-ref">rules</span></a> [i]， <a class="reference internal" href="#class_parser_1ad05d0f6787355756a5ed92b2913de6dc"><span class="std std-ref">select_set</span></a> [i] 是 <a class="reference internal" href="#class_parser_1ada8d46a6f93c6c58f3ceba32c3ca2ab5"><span class="std std-ref">rules</span></a> [i]的SELECT集。 </p>
 </dd></dl>
 
 </div>
