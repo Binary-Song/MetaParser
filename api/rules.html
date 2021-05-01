@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>规则 &mdash; MetaParser  documentation</title>
+  <title>语言规则 &mdash; MetaParser  documentation</title>
   
 
   
@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="inrslv.html">输入文件解析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lexer.html">词法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parser.html">语法分析器</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">规则</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">语言规则</a></li>
 </ul>
 </li>
 </ul>
@@ -144,7 +144,7 @@
         
           <li><a href="index.html">API</a> &raquo;</li>
         
-      <li>规则</li>
+      <li>语言规则</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,13 +164,21 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api-rules">
-<span id="id1"></span><h1>规则<a class="headerlink" href="#api-rules" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>语言规则<a class="headerlink" href="#api-rules" title="Permalink to this headline">¶</a></h1>
+<p>语言的规则文件经过解析器处理后得到一个语言规则对象Rules。在Rules对象中，所有的符号均被给予id，之后的操作只需对id进行处理。当然，Rules对象也提供了必要的信息以便将id重新转换回符号名。</p>
+<p>语言的符号包括终结符和非终结符，符号的id是一个32位整数。</p>
+<ul class="simple">
+<li><p>正的id表示非终结符；</p></li>
+<li><p>负的id表示终结符；</p></li>
+<li><p>id为0表示“空”，空既不属于非终结符也不属于终结符。</p></li>
+</ul>
+<p>id的绝对值越小，表示符号越先被定义。对于终结符EOF， InputFileResolver 会在解析规则文件前，自动定义EOF（“文件结束”）符号。 Lexer 会在词法分析时自动将它加入到单词序列末尾，因此 <strong>-1是EOF的id</strong> 。对于非终结符“起始符号”， InputFileResolver 规定第一条产生式的左部是起始符号，且一个语言至少有一条产生式，因此 <strong>1是起始符号的id</strong> 。</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
 <dl class="cpp type">
 <dt id="_CPPv49symbol_id">
 <span id="_CPPv39symbol_id"></span><span id="_CPPv29symbol_id"></span><span class="target" id="rules_8hpp_1a5c5dd6d289be5fc53e93dfcd6f87d60c"></span><em class="property"><span class="pre">using</span> </em><code class="sig-name descname"><span class="pre">symbol_id</span></code> <span class="pre">=</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">int32_t</span><a class="headerlink" href="#_CPPv49symbol_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号（分为终结符或非终结符）的id是一个32位整数, 正的id表示非终结符(non-terminal) 负的id表示终结符(token或terminal) id为0表示空。 </p>
+<dd><p>符号（分为终结符或非终结符）的id。 </p>
 </dd></dl>
 
 </div>
@@ -266,6 +274,19 @@
 <span id="_CPPv35Rules"></span><span id="_CPPv25Rules"></span><span id="Rules"></span><span class="target" id="struct_rules"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Rules</span></code><a class="headerlink" href="#_CPPv45Rules" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;rules.hpp&gt;</em><p>语言的规则 </p>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK5Rules7to_nameE9symbol_id">
+<span id="_CPPv3NK5Rules7to_nameE9symbol_id"></span><span id="_CPPv2NK5Rules7to_nameE9symbol_id"></span><span id="Rules::to_name__symbol_idC"></span><span class="target" id="struct_rules_1a1400cefcda4c7cd13cc4378a90cd8fad"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">to_name</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5Rules7to_nameE9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK5Rules5to_idERKNSt6stringE">
+<span id="_CPPv3NK5Rules5to_idERKNSt6stringE"></span><span id="_CPPv2NK5Rules5to_idERKNSt6stringE"></span><span id="Rules::to_id__ssCRC"></span><span class="target" id="struct_rules_1ad72a5b291fea131290d60377e1c80154"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <code class="sig-name descname"><span class="pre">to_id</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5Rules5to_idERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt id="_CPPv4N5Rules11lexer_rulesE">
@@ -282,13 +303,13 @@
 <dl class="cpp var">
 <dt id="_CPPv4N5Rules17symbol_id_to_nameE">
 <span id="_CPPv3N5Rules17symbol_id_to_nameE"></span><span id="_CPPv2N5Rules17symbol_id_to_nameE"></span><span id="Rules::symbol_id_to_name__std::map:symbol_id.ss:"></span><span class="target" id="struct_rules_1addd62afefb90e678088a1f9eafc2c7b6"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_id_to_name</span></code><a class="headerlink" href="#_CPPv4N5Rules17symbol_id_to_nameE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号的id到符号名称的映射，便于通过id查找符号名。id为k的符号，名称为 <a class="reference internal" href="#struct_rules_1addd62afefb90e678088a1f9eafc2c7b6"><span class="std std-ref">symbol_id_to_name</span></a> [k]。 </p>
+<dd><p>符号的id到符号名称的映射，便于通过id查找符号名。id为ID的符号，其名称为 <a class="reference internal" href="#struct_rules_1addd62afefb90e678088a1f9eafc2c7b6"><span class="std std-ref">symbol_id_to_name</span></a> [ID]。 </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N5Rules17symbol_name_to_idE">
 <span id="_CPPv3N5Rules17symbol_name_to_idE"></span><span id="_CPPv2N5Rules17symbol_name_to_idE"></span><span id="Rules::symbol_name_to_id__std::map:ss.symbol_id:"></span><span class="target" id="struct_rules_1ae6542b3e8dc035e64411ae9432ea570d"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_name_to_id</span></code><a class="headerlink" href="#_CPPv4N5Rules17symbol_name_to_idE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号的名称到符号id的映射，便于通过符号名查找id，id为 <a class="reference internal" href="#struct_rules_1ae6542b3e8dc035e64411ae9432ea570d"><span class="std std-ref">symbol_name_to_id</span></a> [k]。 </p>
+<dd><p>符号的名称到符号id的映射，便于通过符号名查找id，名称为name的符号，其id为 <a class="reference internal" href="#struct_rules_1ae6542b3e8dc035e64411ae9432ea570d"><span class="std std-ref">symbol_name_to_id</span></a> [name]。 </p>
 </dd></dl>
 
 <dl class="cpp var">

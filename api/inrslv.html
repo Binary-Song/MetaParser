@@ -92,7 +92,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">输入文件解析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lexer.html">词法分析器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parser.html">语法分析器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rules.html">规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules.html">语言规则</a></li>
 </ul>
 </li>
 </ul>
@@ -179,8 +179,8 @@
 <li><p>正则表达式中不能含有空格，如要匹配空格，请使用\s</p></li>
 </ul>
 <p>语法定义形式如下：</p>
-<p><em>非终结符名</em> =&gt; <em>产生式</em></p>
-<p>产生式是由空格或tab分隔的终结符和非终结符名组成的序列。</p>
+<p><em>非终结符名</em> =&gt; <em>产生式右部</em></p>
+<p>产生式右部是由空格或tab分隔的终结符和非终结符名组成的序列。</p>
 <p>例如：</p>
 <blockquote>
 <div><p>add := [+]</p>
@@ -214,7 +214,7 @@
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver18resolve_input_fileEPKcR5Rules">
 <span id="_CPPv3N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="_CPPv2N17InputFileResolver18resolve_input_fileEPKcR5Rules"></span><span id="InputFileResolver::resolve_input_file__cCP.RulesR"></span><span class="target" id="class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">resolve_input_file</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">file_name</span></em>, <a class="reference internal" href="rules.html#_CPPv45Rules" title="Rules"><span class="pre">Rules</span></a> <span class="pre">&amp;</span><em><span class="pre">rules</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18resolve_input_fileEPKcR5Rules" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>读取输入文件，输出各种规则。如果发生错误，返回错误数量（0为成功），诊断信息存放在full_diag_msg中。每个对象只能调用一次。 </p>
+<dd><p>读取输入文件，输出各种规则。如果发生错误，返回错误数量（0为成功），诊断信息存放在diag_msg中。每个对象只能调用一次。 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -252,8 +252,8 @@
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N17InputFileResolver13full_diag_msgE">
-<span id="_CPPv3N17InputFileResolver13full_diag_msgE"></span><span id="_CPPv2N17InputFileResolver13full_diag_msgE"></span><span id="InputFileResolver::full_diag_msg__ss"></span><span class="target" id="class_input_file_resolver_1afeacb0485e48f4b69bdd71e8490e40ea"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">full_diag_msg</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver13full_diag_msgE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv4N17InputFileResolver8diag_msgE">
+<span id="_CPPv3N17InputFileResolver8diag_msgE"></span><span id="_CPPv2N17InputFileResolver8diag_msgE"></span><span id="InputFileResolver::diag_msg__ss"></span><span class="target" id="class_input_file_resolver_1a4fbf98f7c36d64c547f16358ea4f2a09"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">diag_msg</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver8diag_msgE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>诊断信息，由 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 负责写入。 </p>
 </dd></dl>
 
@@ -279,6 +279,12 @@
 <dt id="_CPPv4N17InputFileResolver17symbol_name_to_idE">
 <span id="_CPPv3N17InputFileResolver17symbol_name_to_idE"></span><span id="_CPPv2N17InputFileResolver17symbol_name_to_idE"></span><span id="InputFileResolver::symbol_name_to_id__std::map:ss.symbol_id:"></span><span class="target" id="class_input_file_resolver_1acc6f8217dcbd34ec77f12887f4f25070"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_name_to_id</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver17symbol_name_to_idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>符号的名称到符号id的映射。名称为k的符号，id为 <a class="reference internal" href="#class_input_file_resolver_1acc6f8217dcbd34ec77f12887f4f25070"><span class="std std-ref">symbol_name_to_id</span></a> [k]。 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N17InputFileResolver4errsE">
+<span id="_CPPv3N17InputFileResolver4errsE"></span><span id="_CPPv2N17InputFileResolver4errsE"></span><span id="InputFileResolver::errs__i"></span><span class="target" id="class_input_file_resolver_1ac083b6fb57d9e36aa4bced9c81aca4c7"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">errs</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N17InputFileResolver4errsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>发现的错误数量。 </p>
 </dd></dl>
 
 </div>
@@ -322,11 +328,24 @@
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver29handle_parser_rule_first_passERKNSt6stringERNSt6smatchE">
 <span id="_CPPv3N17InputFileResolver29handle_parser_rule_first_passERKNSt6stringERNSt6smatchE"></span><span id="_CPPv2N17InputFileResolver29handle_parser_rule_first_passERKNSt6stringERNSt6smatchE"></span><span id="InputFileResolver::handle_parser_rule_first_pass__ssCR.std::smatchR"></span><span class="target" id="class_input_file_resolver_1a5665670a24059259a4dbecbf76ebf312"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">handle_parser_rule_first_pass</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">line</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">smatch</span> <span class="pre">&amp;</span><em><span class="pre">matches</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver29handle_parser_rule_first_passERKNSt6stringERNSt6smatchE" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>第一趟扫描词法规则：声明非终结符 </p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver30handle_parser_rule_second_passERKNSt6stringERNSt6smatchE">
 <span id="_CPPv3N17InputFileResolver30handle_parser_rule_second_passERKNSt6stringERNSt6smatchE"></span><span id="_CPPv2N17InputFileResolver30handle_parser_rule_second_passERKNSt6stringERNSt6smatchE"></span><span id="InputFileResolver::handle_parser_rule_second_pass__ssCR.std::smatchR"></span><span class="target" id="class_input_file_resolver_1af09f07724516a12f13229a34e48477c4"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">handle_parser_rule_second_pass</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">line</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">smatch</span> <span class="pre">&amp;</span><em><span class="pre">matches</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver30handle_parser_rule_second_passERKNSt6stringERNSt6smatchE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>第一趟扫描词法规则：添加规则 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N17InputFileResolver18append_local_errorEiRKNSt6stringEiRKNSt6stringE">
+<span id="_CPPv3N17InputFileResolver18append_local_errorEiRKNSt6stringEiRKNSt6stringE"></span><span id="_CPPv2N17InputFileResolver18append_local_errorEiRKNSt6stringEiRKNSt6stringE"></span><span id="InputFileResolver::append_local_error__i.ssCR.i.ssCR"></span><span class="target" id="class_input_file_resolver_1a6269add8b51dd9f8bb6f5a56f6912034"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">append_local_error</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">errcode</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">file_name</span></em>, <span class="pre">int</span> <em><span class="pre">line_no</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">reason</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18append_local_errorEiRKNSt6stringEiRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>将错误信息写到 <a class="reference internal" href="#class_input_file_resolver_1a4fbf98f7c36d64c547f16358ea4f2a09"><span class="std std-ref">diag_msg</span></a> 末尾。并给 <a class="reference internal" href="#class_input_file_resolver_1ac083b6fb57d9e36aa4bced9c81aca4c7"><span class="std std-ref">errs</span></a> 加1 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N17InputFileResolver19append_global_errorEiRKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N17InputFileResolver19append_global_errorEiRKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N17InputFileResolver19append_global_errorEiRKNSt6stringERKNSt6stringE"></span><span id="InputFileResolver::append_global_error__i.ssCR.ssCR"></span><span class="target" id="class_input_file_resolver_1ad0aa861182ae1448d3d44f195797d61a"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">append_global_error</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">errcode</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">file_name</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">reason</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver19append_global_errorEiRKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
