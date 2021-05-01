@@ -177,7 +177,7 @@
 <div class="section" id="id2">
 <h2>2021.5.1 更新日志<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>目前求FOLLOW集的函数我已经写完，然而gitee上还没有看到大家的贡献记录。凭我一人之力无法完成整个项目，也无法代大家完成答辩，所以还请大家加快进度。</p>
-<p>为了帮助大家完成各自的任务，我再次丰富完善了本文档和代码注释，并更新了语法分析器类的API，使之包含更多必要的信息来求各种集合。如果不知道follow</p>
+<p>为了帮助大家完成各自的任务，我再次丰富完善了本文档和代码注释，并更新了语法分析器类的API，使之包含更多必要的信息来求各种集合。</p>
 <div class="section" id="eof">
 <h3>更新对eof的处理<a class="headerlink" href="#eof" title="Permalink to this headline">¶</a></h3>
 <p>eof是一个自动定义的**终结符**。输入解析器在解析规则文件时，会自动定义符号eof的id为-1，其名称为 <code class="docutils literal notranslate"><span class="pre">$eof</span></code> （为了避免与用户定义的符号名冲突，特地在前面加了一个 <code class="docutils literal notranslate"><span class="pre">$</span></code>  ）。另一个默认定义的符号是ε，id为0，名称为 <code class="docutils literal notranslate"><span class="pre">/</span></code>。</p>
