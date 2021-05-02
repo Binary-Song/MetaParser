@@ -17,8 +17,8 @@ InputFileResolver resolver;
 Rules rules;
 
 int main()
-{ 
-     // 解析文件，写入rules对象
+{
+    // 解析文件，写入rules对象
     int errcode = resolver.resolve_input_file(__FILE__ "/../input1.txt", rules);
     if (errcode)
     {
@@ -33,15 +33,18 @@ int main()
         std::cout << id << name << std::endl;
     }
 
-    cout<<endl;
+    cout << endl;
     // 初始化语法分析器。
     // rules是语言的全部规则
     // false表示不需要在构造时求empty_derivings、first_set等集合。
     Parser parser(rules, false);
 
     parser.compute_empty_deriving_symbols();
-    
-    
 
-   return 0;
+    for (auto &&pair : parser.empty_derivings)
+    {
+        std::cout << rules.to_name(pair.first) << " " << (int)pair.second << '\n';
+    }
+
+    return 0;
 }
