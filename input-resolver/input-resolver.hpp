@@ -35,9 +35,9 @@ public:
     /// @param sid 符号的id
     /// @return 符号的名称
     /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::to_name 来取得符号名称。
-    [[deprecated("Use Rules::to_name instead.")]] std::string &symbol_name(symbol_id sid)
+    [[deprecated("Use Rules::symbol_id_to_name instead.")]] std::string &symbol_name(symbol_id sid)
     {
-        return symbol_id_to_name[sid];
+        return out_rules->symbol_id_to_name[sid];
     }
 
     /// 终结符数量

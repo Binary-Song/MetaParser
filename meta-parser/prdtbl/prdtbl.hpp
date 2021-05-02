@@ -15,11 +15,11 @@ public:
 
     rule_index &at(symbol_id nt, symbol_id t)
     {
-        return table.at(map_symid_to_table_index(nt, t));
+        return table.at( symid_to_index(nt, t));
     }
 
 private:
-    std::pair<size_t, size_t> map_symid_to_table_index(symbol_id nt, symbol_id t)
+    std::pair<size_t, size_t> symid_to_index(symbol_id nt, symbol_id t)
     {
         return {nt - 1, -t};
     }

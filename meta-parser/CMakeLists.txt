@@ -4,6 +4,7 @@ add_library(meta-parser
     "./follow/follow.cpp"
     "./select/select.cpp"
     "./prdtbl/prdtbl.cpp"
+    "./meta-parser.cpp"
     )
 
 target_include_directories(meta-parser PUBLIC
@@ -34,6 +35,10 @@ add_executable(meta-parser-select-test
     "./select/select-test.cpp"
 )
 
+add_executable(meta-parser-prdtbl-test
+    "./prdtbl/prdtbl-test.cpp"
+)
+
 target_link_libraries(meta-parser-empderv-test PUBLIC 
     meta-parser-test-interface
 )
@@ -47,5 +52,9 @@ target_link_libraries(meta-parser-follow-test PUBLIC
 )
 
 target_link_libraries(meta-parser-select-test PUBLIC 
+    meta-parser-test-interface
+)
+
+target_link_libraries(meta-parser-prdtbl-test PUBLIC 
     meta-parser-test-interface
 )

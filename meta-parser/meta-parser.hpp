@@ -17,21 +17,8 @@ public:
     /// 若为true，将进行LL(1)文法的判别和预测分析表的生成。若为false，将不会进行任何计算。
     /// 如果需要适合手动输入first,follow和select等集合。请将它设置为false。
     /// @note @ref InputFileResolver 可以读取文件并输出规则，以提供给@ref Parser 的构造函数。
-    Parser(Rules const &rules, bool do_ll1_computations = true)
-        : rules(rules), prdtbl(rules.non_terminal_count, rules.terminal_count)
-    {
-        if (do_ll1_computations)
-        {
-            compute_empty_deriving_symbols();
-            compute_first_set();
-            compute_follow_set();
-            compute_select_set();
-            if (generate_predict_table())
-            {
-                throw "Not a LL1";
-            }
-        }
-    }
+    /// @exception Parser::Exception 当给定的不是LL1文法时，会抛出此异常。
+    Parser(Rules const &rules, bool do_ll1_computations = true);
 
     /// 定义语言的各种规则
     Rules const &rules;
@@ -72,6 +59,19 @@ public:
     /// 生成预测分析表。 @ref prdtbl
     /// @return 返回0表示成功，返回1表示失败。
     int generate_predict_table();
+
+    /// 此类抛出的异常
+    class Exception
+    {
+    public:
+        /// 导致异常的原因
+        const char *what;
+
+        Exception(const char *what)
+            : what(what)
+        {
+        }
+    };
 
 private:
     /// 返回一个符号串α的FIRST集合。此函数调用的前提是 @ref first_set 已经被算出。本函数已经在follow.cpp实现。

@@ -15,12 +15,12 @@ symbol_id get_id(std::string s)
 {
     return rules.symbol_name_to_id[s];
 }
- 
+
 int main()
 {
 
-    const char rules_file_path[] = ROOT_DIR "/data/rules1.txt"; 
- 
+    std::string rules_file_path = ROOT_DIR + std::string("/data/rules1.txt");
+
     // 解析文件，写入rules对象
     int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
@@ -66,7 +66,7 @@ int main()
     parser.first_set[get_id("b")] = {get_id("b")};
     parser.first_set[get_id("c")] = {get_id("c")};
     parser.first_set[get_id("d")] = {get_id("d")};
-    
+
     parser.compute_follow_set();
 
     for (auto &&pair : parser.follow_set)
@@ -77,9 +77,9 @@ int main()
         std::cout << "follow(" << rules.symbol_id_to_name[id] << ")={ ";
         for (auto &&elem : set)
         {
-            std::cout  << rules.symbol_id_to_name[elem] << ", ";
+            std::cout << rules.symbol_id_to_name[elem] << ", ";
         }
-        std::cout  << "}\n";
+        std::cout << "}\n";
     }
     return 0;
 }

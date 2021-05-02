@@ -26,7 +26,7 @@ int main()
         return 1;
     }
     // 输出每个符号的id和名称
-    for (auto &&pair : resolver.symbol_id_to_name)
+    for (auto &&pair : rules.symbol_id_to_name)
     {
         auto id = pair.first;
         auto name = pair.second;
