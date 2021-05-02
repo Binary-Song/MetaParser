@@ -30,11 +30,13 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
 {
     this->out_rules = &result;
 
-    // 确保本函数只能被调用1次
-    if (used == false)
-        used = true;
-    else
-        throw "This function can only be called once for each object!";
+    // clean up
+    this->diag_msg = std::string();
+    this->errs = 0;
+    this->non_terminal_count = 0;
+    this->symbol_id_to_name.clear();
+    this->symbol_name_to_id.clear();
+    this->terminal_count = 0;
 
     // 提前定义好“空“为正斜杠
     link_id_with_name(0, "/");

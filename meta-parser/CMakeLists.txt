@@ -2,10 +2,13 @@ add_library(meta-parser
     "./empderv/empderv.cpp"
     "./first/first.cpp"
     "./follow/follow.cpp"
-    "./select/select.cpp")
+    "./select/select.cpp"
+    "./prdtbl/prdtbl.cpp"
+    )
 
 target_include_directories(meta-parser PUBLIC
-    ".")
+    "."
+    "prdtbl")
 
 target_link_libraries(meta-parser PUBLIC 
     meta-lexer

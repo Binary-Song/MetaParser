@@ -68,10 +68,10 @@ struct Rules
     std::map<std::string, symbol_id> symbol_name_to_id;
 
     /// 终结符数量
-    int terminal_count = -1;
+    int terminal_count = 0;
 
     /// 非终结符数量
-    int non_terminal_count = -1;
+    int non_terminal_count = 0;
 
     std::string to_name(symbol_id id) const
     {

@@ -11,11 +11,12 @@
 
 #include <rules.hpp>
 
-/// 输入文件解析器。 @ref InputFileResolver 能将以规定格式写成的文件解析成 @ref Rules 对象。调用 @ref resolve_input_file 来解析文件，每个对象只能调用一次这个函数。
+/// 输入文件解析器。 @ref InputFileResolver 能将以规定格式写成的文件解析成 @ref Rules 对象。调用 @ref resolve_input_file 来解析文件。
 class InputFileResolver
 {
 public:
-    /// 指示这个对象是否调用过 @ref resolve_input_file 了。若调用过则不能再次调用。
+    /// 指示这个是否调用过本对象的 @ref resolve_input_file 至少1次。
+    /// @deprecated 已弃用，现在允许调用 @ref resolve_input_file 任意次。
     bool used = false;
 
     /// 诊断信息，由 @ref resolve_input_file 负责写入。
@@ -33,22 +34,27 @@ public:
     /// 返回符号的名称。
     /// @param sid 符号的id
     /// @return 符号的名称
-    std::string &symbol_name(symbol_id sid)
+    /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::to_name 来取得符号名称。
+    [[deprecated("Use Rules::to_name instead.")]] std::string &symbol_name(symbol_id sid)
     {
         return symbol_id_to_name[sid];
     }
 
     /// 终结符数量
-    int terminal_count = 0;
+    /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::terminal_count 来取得终结符数量。
+    [[deprecated("Use Rules::terminal_count instead.")]] int terminal_count = 0;
 
     /// 非终结符数量
-    int non_terminal_count = 0;
+    /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::non_terminal_count 来取得非终结符数量。
+    [[deprecated("Use Rules::non_terminal_count instead.")]] int non_terminal_count = 0;
 
     /// 符号的id到符号名称的映射。id为k的符号，名称为 @ref symbol_id_to_name [k]。
-    std::map<symbol_id, std::string> symbol_id_to_name;
+    /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::to_name 来取得符号名称。
+    [[deprecated("Use Rules::to_name instead.")]] std::map<symbol_id, std::string> symbol_id_to_name;
 
     /// 符号的名称到符号id的映射。名称为k的符号，id为 @ref symbol_name_to_id [k]。
-    std::map<std::string, symbol_id> symbol_name_to_id;
+    /// @deprecated 已弃用，请在调用 @ref resolve_input_file 后调用输出参数rules的 @ref Rules::to_id 来取得符号id。
+    [[deprecated("Use Rules::to_id instead.")]] std::map<std::string, symbol_id> symbol_name_to_id;
 
     /// 发现的错误数量。
     int errs = 0;
@@ -70,7 +76,7 @@ private:
 
     int add_lexer_rule(symbol_id id, std::string &regex);
 
-    int add_parser_rule(std::string const& left, std::vector<std::string> const& right_words);
+    int add_parser_rule(std::string const &left, std::vector<std::string> const &right_words);
 
     // void add_parser_rule(std::string const &name);
 
@@ -78,9 +84,8 @@ private:
     int handle_parser_rule_first_pass(std::string const &line, std::smatch &matches);
     int handle_parser_rule_second_pass(std::string const &line, std::smatch &matches);
 
-    void append_local_error(int errcode,std::string const &file_name,int line_no, std::string const & reason);
-
-    void append_global_error(int errcode,std::string const &file_name,  std::string const & reason); 
+    void append_local_error(int errcode, std::string const &file_name, int line_no, std::string const &reason);
+    void append_global_error(int errcode, std::string const &file_name, std::string const &reason);
 };
 
 #endif // _IO_H_
