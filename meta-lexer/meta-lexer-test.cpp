@@ -5,23 +5,21 @@
 #include <input-resolver.hpp>
 #include <fstream>
 #include <sstream>
-
-std::string read_file_into_string(const char *file_name)
-{
-    std::ifstream t(file_name);
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    return buffer.str();
-}
+#include <shared.hpp>
+ 
 
 int main()
 {
+    const char rules_file_path[] = ROOT_DIR "/data/rules2.txt";
+    const char code_file_path[] = ROOT_DIR "/data/code2.txt";
+
+
     // 创建解析器对象
     InputFileResolver resolver;
     // 通过解析文件，得到语言的所有规则。包括词法规则和语法规则
     Rules rules;
     // 错误代码，0为成功
-    int errcode = resolver.resolve_input_file(__FILE__ "/../test_language_rules.txt", rules);
+    int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
     {
         // 若有错误，就输出错误消息，退出程序
@@ -31,7 +29,7 @@ int main()
     // 创建词法分析器
     Lexer lexer(rules.lexer_rules);
     // 读取文件到字符串
-    std::string test_code = read_file_into_string(__FILE__ "/../test_code.txt");
+    std::string test_code = read_file_into_string(code_file_path);
     // 词法分析
     std::vector<Token> tokens;
     errcode = lexer.analyze(test_code, tokens);

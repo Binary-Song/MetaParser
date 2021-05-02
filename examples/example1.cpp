@@ -3,19 +3,22 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
+#include <shared.hpp>
 #include <input-resolver.hpp>
 #include <meta-lexer.hpp>
 std::string read_file_into_string(const char *file_name);
-
+ 
 int main()
 {
+    const char rules_file_path[] = ROOT_DIR "/data/rules2.txt";
+    const char code_file_path[] = ROOT_DIR "/data/code2.txt";
+
     // 创建解析器对象
     InputFileResolver resolver;
     // 通过解析文件，得到语言的所有规则。包括词法规则和语法规则
     Rules rules;
     // 错误代码，0为成功，调用本函数后，rules对象被写入
-    int errcode = resolver.resolve_input_file(__FILE__ "/../rules1.txt", rules);
+    int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
     {
         // 若有错误，就输出错误消息，退出程序
@@ -31,7 +34,7 @@ int main()
         std::string name = name_id_pair.second;
         symbol_id id = name_id_pair.first;
 
-        std::cout <<"id=" <<id<<"\t" <<name << "\t";
+        std::cout << "id=" << id << "\t" << name << "\t";
         std::cout << "type=";
         if (is_termin(id))
             std::cout << "terminal" << std::endl;
@@ -43,9 +46,8 @@ int main()
 
     // 用词法规则创建词法分析器
     Lexer lexer(rules.lexer_rules);
-    // 读取文件到字符串，它是我们要编译的“代码”
-    const char * file_path = __FILE__ "/../code1.txt";
-    std::string test_code = read_file_into_string(file_path);
+    // 读取文件到字符串，它是我们要编译的“代码” 
+    std::string test_code = read_file_into_string(code_file_path);
 
     std::vector<Token> tokens;
     // 词法分析
@@ -70,18 +72,11 @@ int main()
             test_code.begin() + token.end);  // token.end 是单词的结尾后一个字符test_code中的下标（从0开始）
 
         // 输出单词和对应类型
-        std::cout << "`"<<token_content << "`\t" << resolver.symbol_name(token.id) << std::endl;
+        std::cout << "`" << token_content << "`\t" << resolver.symbol_name(token.id) << std::endl;
     }
 
     // 遍历每个符号
 
     return 0;
 }
-
-std::string read_file_into_string(const char *file_name)
-{
-    std::ifstream t(file_name);
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    return buffer.str();
-}
+ 

@@ -18,8 +18,10 @@ symbol_id get_id(std::string s)
 
 int main()
 {
+    const char rules_file_path[] = ROOT_DIR "/data/rules1.txt"; 
+
     // 解析文件，写入rules对象
-    int errcode = resolver.resolve_input_file(__FILE__"/../../follow/rules1.txt", rules);
+    int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
     {
         std::cout << resolver.diag_msg << std::endl;

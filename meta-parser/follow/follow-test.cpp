@@ -15,11 +15,14 @@ symbol_id get_id(std::string s)
 {
     return rules.symbol_name_to_id[s];
 }
-
+ 
 int main()
 {
+
+    const char rules_file_path[] = ROOT_DIR "/data/rules1.txt"; 
+ 
     // 解析文件，写入rules对象
-    int errcode = resolver.resolve_input_file(__FILE__ "/../rules1.txt", rules);
+    int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
     {
         std::cout << resolver.diag_msg << std::endl;
@@ -30,7 +33,7 @@ int main()
     {
         auto id = pair.first;
         auto name = pair.second;
-        std::cout << id << name << std::endl;
+        std::cout << id << ":" << name << std::endl;
     }
 
     // 初始化语法分析器。
@@ -71,11 +74,12 @@ int main()
         auto &&id = pair.first;
         auto &&set = pair.second;
 
-        std::cout << "follow set of " << rules.symbol_id_to_name[id] << ":\n";
+        std::cout << "follow(" << rules.symbol_id_to_name[id] << ")={ ";
         for (auto &&elem : set)
         {
-            std::cout << "    " << rules.symbol_id_to_name[elem] << "\n";
+            std::cout  << rules.symbol_id_to_name[elem] << ", ";
         }
+        std::cout  << "}\n";
     }
     return 0;
 }

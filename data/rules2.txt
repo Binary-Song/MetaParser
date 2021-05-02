@@ -1,12 +1,11 @@
 number     := [0-9]+ 
-identi     := [a-zA-Z]+
+identifier := [a-zA-Z]+
 add        := [+]
 mult       := [*]
 space      := \s+ 
-error      := .
- 
+minus      := [-]
+ERROR      := .
 
 E -> T add T
 T -> F mult F
 F -> number
-A -> /

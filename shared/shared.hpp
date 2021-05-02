@@ -3,4 +3,5 @@
 
 #include "rules.hpp"
 #include "utils.hpp"
+#include "local_path.hpp"
 #endif // _SHARED_H_

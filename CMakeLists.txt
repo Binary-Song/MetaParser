@@ -8,6 +8,7 @@ include(RunDoxygen)
 
 set(GENERATE_DOCS NO CACHE BOOL "是否生成文档")  
 configure_file("${CMAKE_CURRENT_LIST_DIR}/docs/Doxyfile.in" "${CMAKE_CURRENT_LIST_DIR}/docs/Doxyfile")
+configure_file("${CMAKE_CURRENT_LIST_DIR}/shared/local_path.hpp.in" "${CMAKE_CURRENT_LIST_DIR}/shared/local_path.hpp")
 
 # compiler options
 

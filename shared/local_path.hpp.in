@@ -1,0 +1,2 @@
+/// 本机中MetaParser工程根目录（绝对路径）
+#define ROOT_DIR "@CMAKE_SOURCE_DIR@";

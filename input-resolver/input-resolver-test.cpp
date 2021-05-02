@@ -1,14 +1,20 @@
 #include "input-resolver.hpp"
 #include <iostream>
 #include <stdlib.h>
+#include <local_path.hpp>
+
+ 
 int main()
-{
+{ 
+    const char rules_file_path[] = ROOT_DIR "/data/rules2.txt";
+    const char code_file_path[] = ROOT_DIR "/data/code2.txt";
+
     // 创建解析器对象
     InputFileResolver resolver;
     // 通过解析文件，得到语言的所有规则。包括词法规则和语法规则
     Rules rules;
     // 错误代码，0为成功
-    int errcode = resolver.resolve_input_file(__FILE__ "/../input.txt", rules);
+    int errcode = resolver.resolve_input_file(rules_file_path, rules);
     if (errcode)
     {
         // 若有错误，就输出错误消息，退出程序
@@ -38,7 +44,7 @@ int main()
     // 再输出产生式
     for (auto &&r : rules.parser_rules)
     {
-        // resolver.symbol_name函数可以根据id取名字
+        // resolver.symbol_name函数可以根据id返回名字
         std::cout << resolver.symbol_name(r.left) << " -> ";
         for (auto &&rr : r.right)
         {
@@ -46,5 +52,4 @@ int main()
         }
         std::cout << "\n";
     }
-    getchar();
 }

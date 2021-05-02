@@ -4,3 +4,4 @@ build
 docs/html
 docs/xml
 docs/Doxyfile
+shared/local_path.hpp
