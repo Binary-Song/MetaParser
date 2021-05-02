@@ -180,7 +180,7 @@
 <p>为了帮助大家完成各自的任务，我再次丰富完善了本文档和代码注释，并更新了语法分析器类的API，使之包含更多必要的信息来求各种集合。</p>
 <div class="section" id="eof">
 <h3>更新对eof的处理<a class="headerlink" href="#eof" title="Permalink to this headline">¶</a></h3>
-<p>eof是一个自动定义的**终结符**。输入解析器在解析规则文件时，会自动定义符号eof的id为-1，其名称为 <code class="docutils literal notranslate"><span class="pre">$eof</span></code> （为了避免与用户定义的符号名冲突，特地在前面加了一个 <code class="docutils literal notranslate"><span class="pre">$</span></code>  ）。另一个默认定义的符号是ε，id为0，名称为 <code class="docutils literal notranslate"><span class="pre">/</span></code>。</p>
+<p>eof是一个自动定义的 <strong>终结符</strong> 。输入解析器在解析规则文件时，会自动定义符号eof的id为-1，其名称为 <code class="docutils literal notranslate"><span class="pre">$eof</span></code> （为了避免与用户定义的符号名冲突，特地在前面加了一个 <code class="docutils literal notranslate"><span class="pre">$</span></code>  ）。另一个默认定义的符号是ε，id为0，名称为 <code class="docutils literal notranslate"><span class="pre">/</span></code>。</p>
 <p>词法分析器在将代码输入转化成单词序列时，也会在末尾添加一个 eof 。</p>
 <p>之后提到终结符时，都包括eof。这个符号一般不需要特殊的处理，把它当作正常的终结符即可。</p>
 <p>举个例子，假设用户给出的规则文件包含3个终结符t1,t2,t3的定义和3个非终结符N1,N2,N3的定义，那么最终的符号id-符号名称的对应关系为：</p>
@@ -281,15 +281,15 @@
 <p>针对empty_derivings：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>约定终结符 <strong>不能</strong> 推出空（i&lt;0 蕴含 empty_derivings[i]=0）； ε <strong>能</strong> 推出空（empty_derivings[0]=1）。</p></li>
+<li><p>规定：终结符 <strong>不能</strong> 推出空（若 i&lt;0 则 empty_derivings[i]=0）； ε <strong>能</strong> 推出空（empty_derivings[0]=1）。</p></li>
 <li><p>非终结符的定义不变。</p></li>
 </ul>
 </div></blockquote>
 <p>针对first_set：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>约定 ε 的FIRST集合是 {ε}（first_set[0]={0}）。</p></li>
-<li><p>终结符 t 的FIRST集合是 {t} （i&lt;0 蕴含 first_set[i]={i}）。</p></li>
+<li><p>规定： ε 的FIRST集合是拥有一个元素的集合 {ε}（first_set[0]={0}）。</p></li>
+<li><p>终结符 t 的FIRST集合是 {t} （若 i&lt;0 则 first_set[i]={i}）。</p></li>
 <li><p>非终结符 t 的FIRST集合定义不变。</p></li>
 </ul>
 </div></blockquote>

@@ -202,7 +202,7 @@
 <dl class="cpp class">
 <dt id="_CPPv417InputFileResolver">
 <span id="_CPPv317InputFileResolver"></span><span id="_CPPv217InputFileResolver"></span><span id="InputFileResolver"></span><span class="target" id="class_input_file_resolver"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">InputFileResolver</span></code><a class="headerlink" href="#_CPPv417InputFileResolver" title="Permalink to this definition">¶</a><br /></dt>
-<dd><em>#include &lt;input-resolver.hpp&gt;</em><p>输入文件解析器。 <a class="reference internal" href="#class_input_file_resolver"><span class="std std-ref">InputFileResolver</span></a> 能将以规定格式写成的文件解析成 <a class="reference internal" href="rules.html#struct_rules"><span class="std std-ref">Rules</span></a> 对象。调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 来解析文件，每个对象只能调用一次这个函数。 </p>
+<dd><em>#include &lt;input-resolver.hpp&gt;</em><p>输入文件解析器。 <a class="reference internal" href="#class_input_file_resolver"><span class="std std-ref">InputFileResolver</span></a> 能将以规定格式写成的文件解析成 <a class="reference internal" href="rules.html#struct_rules"><span class="std std-ref">Rules</span></a> 对象。调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 来解析文件。 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
@@ -231,7 +231,13 @@
 <dl class="cpp function">
 <dt id="_CPPv4N17InputFileResolver11symbol_nameE9symbol_id">
 <span id="_CPPv3N17InputFileResolver11symbol_nameE9symbol_id"></span><span id="_CPPv2N17InputFileResolver11symbol_nameE9symbol_id"></span><span id="InputFileResolver::symbol_name__symbol_id"></span><span class="target" id="class_input_file_resolver_1a24fa4816a859abded52bd11e54eebf08"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">symbol_name</span></code><span class="sig-paren">(</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a> <em><span class="pre">sid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17InputFileResolver11symbol_nameE9symbol_id" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>返回符号的名称。 </p>
+<dd><p>返回符号的名称。 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，请在调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 后调用输出参数rules的 <a class="reference internal" href="rules.html#struct_rules_1a1400cefcda4c7cd13cc4378a90cd8fad"><span class="std std-ref">Rules::to_name</span></a> 来取得符号名称。 </p>
+</dd></dl>
+
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>sid</strong> – 符号的id </p>
@@ -248,7 +254,13 @@
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver4usedE">
 <span id="_CPPv3N17InputFileResolver4usedE"></span><span id="_CPPv2N17InputFileResolver4usedE"></span><span id="InputFileResolver::used__b"></span><span class="target" id="class_input_file_resolver_1a686d634630086fe542ce92989a2432b1"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">used</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N17InputFileResolver4usedE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>指示这个对象是否调用过 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 了。若调用过则不能再次调用。 </p>
+<dd><p>指示这个是否调用过本对象的 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 至少1次。 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，现在允许调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 任意次。 </p>
+</dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -260,25 +272,49 @@
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver14terminal_countE">
 <span id="_CPPv3N17InputFileResolver14terminal_countE"></span><span id="_CPPv2N17InputFileResolver14terminal_countE"></span><span id="InputFileResolver::terminal_count__i"></span><span class="target" id="class_input_file_resolver_1ab0d189906779055df616c8723855e422"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">terminal_count</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N17InputFileResolver14terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>终结符数量 </p>
+<dd><p>终结符数量 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，请在调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 后调用输出参数rules的 <a class="reference internal" href="rules.html#struct_rules_1a0edbf7ca994ddefad3e15c2e97ff7769"><span class="std std-ref">Rules::terminal_count</span></a> 来取得终结符数量。 </p>
+</dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver18non_terminal_countE">
 <span id="_CPPv3N17InputFileResolver18non_terminal_countE"></span><span id="_CPPv2N17InputFileResolver18non_terminal_countE"></span><span id="InputFileResolver::non_terminal_count__i"></span><span class="target" id="class_input_file_resolver_1ac27ce369fb136e118ff953e37782a61c"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">non_terminal_count</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N17InputFileResolver18non_terminal_countE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>非终结符数量 </p>
+<dd><p>非终结符数量 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，请在调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 后调用输出参数rules的 <a class="reference internal" href="rules.html#struct_rules_1a304b7f3947871246c6683548fe29c444"><span class="std std-ref">Rules::non_terminal_count</span></a> 来取得非终结符数量。 </p>
+</dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver17symbol_id_to_nameE">
 <span id="_CPPv3N17InputFileResolver17symbol_id_to_nameE"></span><span id="_CPPv2N17InputFileResolver17symbol_id_to_nameE"></span><span id="InputFileResolver::symbol_id_to_name__std::map:symbol_id.ss:"></span><span class="target" id="class_input_file_resolver_1ac3ff9d6fe5dbb80f01dc3c2c2d6ca104"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_id_to_name</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver17symbol_id_to_nameE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号的id到符号名称的映射。id为k的符号，名称为 <a class="reference internal" href="#class_input_file_resolver_1ac3ff9d6fe5dbb80f01dc3c2c2d6ca104"><span class="std std-ref">symbol_id_to_name</span></a> [k]。 </p>
+<dd><p>符号的id到符号名称的映射。id为k的符号，名称为 <a class="reference internal" href="#class_input_file_resolver_1ac3ff9d6fe5dbb80f01dc3c2c2d6ca104"><span class="std std-ref">symbol_id_to_name</span></a> [k]。 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，请在调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 后调用输出参数rules的 <a class="reference internal" href="rules.html#struct_rules_1a1400cefcda4c7cd13cc4378a90cd8fad"><span class="std std-ref">Rules::to_name</span></a> 来取得符号名称。 </p>
+</dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt id="_CPPv4N17InputFileResolver17symbol_name_to_idE">
 <span id="_CPPv3N17InputFileResolver17symbol_name_to_idE"></span><span id="_CPPv2N17InputFileResolver17symbol_name_to_idE"></span><span id="InputFileResolver::symbol_name_to_id__std::map:ss.symbol_id:"></span><span class="target" id="class_input_file_resolver_1acc6f8217dcbd34ec77f12887f4f25070"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="rules.html#_CPPv49symbol_id" title="symbol_id"><span class="pre">symbol_id</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">symbol_name_to_id</span></code><a class="headerlink" href="#_CPPv4N17InputFileResolver17symbol_name_to_idE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>符号的名称到符号id的映射。名称为k的符号，id为 <a class="reference internal" href="#class_input_file_resolver_1acc6f8217dcbd34ec77f12887f4f25070"><span class="std std-ref">symbol_name_to_id</span></a> [k]。 </p>
+<dd><p>符号的名称到符号id的映射。名称为k的符号，id为 <a class="reference internal" href="#class_input_file_resolver_1acc6f8217dcbd34ec77f12887f4f25070"><span class="std std-ref">symbol_name_to_id</span></a> [k]。 <dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>已弃用，请在调用 <a class="reference internal" href="#class_input_file_resolver_1a2c25c22d71411fb6d9e179e2b594acff"><span class="std std-ref">resolve_input_file</span></a> 后调用输出参数rules的 <a class="reference internal" href="rules.html#struct_rules_1ad72a5b291fea131290d60377e1c80154"><span class="std std-ref">Rules::to_id</span></a> 来取得符号id。 </p>
+</dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp var">
