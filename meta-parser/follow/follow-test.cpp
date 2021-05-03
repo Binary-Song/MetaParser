@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
+#define private public
 #include <input-resolver.hpp>
 #include <meta-lexer.hpp>
 
@@ -19,10 +19,10 @@ symbol_id get_id(std::string s)
 int main()
 {
 
-    std::string rules_file_path = ROOT_DIR + std::string("/data/rules1.txt");
+    std::string rules_file_path = PROJECT_ROOT + std::string("/data/rules1.txt");
 
     // 解析文件，写入rules对象
-    int errcode = resolver.resolve_input_file(rules_file_path, rules);
+    int errcode = resolver.resolve_input_file(rules_file_path.c_str(), rules);
     if (errcode)
     {
         std::cout << resolver.diag_msg << std::endl;

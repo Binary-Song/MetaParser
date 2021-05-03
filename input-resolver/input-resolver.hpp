@@ -64,6 +64,8 @@ private:
 
     std::string _diag_msg_reason;
     std::regex _lex_rule_decl_pattern;
+    std::regex _skipped_lex_rule_decl_pattern;
+
     std::regex _separator_pattern;
     std::regex _empty_line_pattern;
     std::regex _parse_rule_decl_pattern;
@@ -74,17 +76,18 @@ private:
 
     symbol_id add_non_terminal(std::string const &name);
 
-    int add_lexer_rule(symbol_id id, std::string &regex);
+    int add_lexer_rule(symbol_id id, std::string &regex, bool skipped );
 
     int add_parser_rule(std::string const &left, std::vector<std::string> const &right_words);
 
     // void add_parser_rule(std::string const &name);
 
-    int handle_lexer_rule(std::string const &line, std::smatch &matches);
+    int handle_lexer_rule(std::string const &line, std::smatch &matches, bool skipped);
     int handle_parser_rule_first_pass(std::string const &line, std::smatch &matches);
     int handle_parser_rule_second_pass(std::string const &line, std::smatch &matches);
 
     void append_local_error(int errcode, std::string const &file_name, int line_no, std::string const &reason);
+
     void append_global_error(int errcode, std::string const &file_name, std::string const &reason);
 };
 

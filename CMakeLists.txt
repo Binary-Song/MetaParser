@@ -22,7 +22,7 @@ endif()
 
 
 # module settings
-
+add_subdirectory(third_party)
 add_subdirectory(shared)
 add_subdirectory(meta-lexer)
 add_subdirectory(meta-parser)

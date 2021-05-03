@@ -11,9 +11,9 @@ int Parser::generate_predict_table()
         auto &&production = rules.parser_rules[pi];
         auto &&select = select_set[pi];
         for (auto &&t : select)
-        {
+        { 
             auto &&cell = prdtbl.at(production.left, t);
-            if (cell == -1)
+            if (cell < 0)
                 cell = pi;
             else
                 return 1; 

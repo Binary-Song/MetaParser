@@ -1,3 +1,5 @@
+# meta-parser目标和相关配置
+
 add_library(meta-parser 
     "./empderv/empderv.cpp"
     "./first/first.cpp"
@@ -15,11 +17,17 @@ target_link_libraries(meta-parser PUBLIC
     meta-lexer
     shared)
 
+# meta-parser-test-interface目标
+# 所有meta-parser相关的测试目标都应该链接到此目标以便统一配置
+
 add_library(meta-parser-test-interface INTERFACE)
 
 target_link_libraries(meta-parser-test-interface INTERFACE 
     meta-parser
     input-resolver)
+
+
+# meta-parser相关的测试目标 
 
 add_executable(meta-parser-empderv-test
     "./empderv/empderv-test.cpp")

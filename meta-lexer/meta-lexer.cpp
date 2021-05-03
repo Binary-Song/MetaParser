@@ -42,7 +42,8 @@ int Lexer::analyze(std::string const &str, std::vector<Token> &tokens)
             {
                 auto begin = target_start - str.begin();
                 auto end = matches[0].second - str.begin();
-                tokens.push_back(Token(rule.token_id, begin, end));
+                if (rule.skipped == false)
+                    tokens.push_back(Token(rule.token_id, begin, end));
                 target_start = matches[0].second;
                 matched = true;
                 break;

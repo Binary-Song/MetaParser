@@ -18,12 +18,14 @@
 #define PERR_UNDEFINED 204
 #define ERR_ILL_DECL 501
 #define ERR_MISSING_START 502
+#define ERR_CANNOT_OPEN_FILE 1000
 std::set<std::string> left_names;
 
 InputFileResolver::InputFileResolver()
     : _lex_rule_decl_pattern{R"(([a-zA-Z0-9_]+)\s+:=\s+([^\s]+)\s*)", std::regex_constants::optimize},
+      _skipped_lex_rule_decl_pattern{R"((\([a-zA-Z0-9_]+\))\s+:=\s+([^\s]+)\s*)", std::regex_constants::optimize},
       _separator_pattern{"===\\s*", std::regex_constants::optimize},
-      _empty_line_pattern("\\s*", std::regex_constants::optimize),
+      _empty_line_pattern("#.*|\\s*", std::regex_constants::optimize),
       _parse_rule_decl_pattern(R"(([a-zA-Z0-9_]+)\s+->((\s+[a-zA-Z0-9_/]+)+)\s*)", std::regex_constants::optimize) {}
 
 int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
@@ -47,6 +49,12 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
     // 准备读文件
     std::ifstream file{file_name};
 
+    if (file.fail())
+    {
+        append_global_error(ERR_CANNOT_OPEN_FILE, file_name, "cannot open file");
+        return ERR_CANNOT_OPEN_FILE;
+    }
+
     std::string line;
 
     // 读取每一行到line中，行号为line_no
@@ -56,7 +64,13 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
         // 0: 词法定义
         // 1: 语法定义
         // 2: 错误
-        int mode = 0;
+        enum
+        {
+            MODE_LEXER_RULE = 0,
+            MODE_LEXER_RULE_SKIPPED,
+            MODE_PARSER_RULE,
+            MODE_ERROR
+        } mode = MODE_LEXER_RULE;
         file.clear();
         file.seekg(0);
         for (unsigned long line_no = 1; std::getline(file, line); line_no++)
@@ -67,30 +81,45 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
 
             std::smatch matches;
             if (std::regex_match(line, matches, this->_lex_rule_decl_pattern))
-                mode = 0;
+                mode = MODE_LEXER_RULE;
+            else if (std::regex_match(line, matches, this->_skipped_lex_rule_decl_pattern))
+                mode = MODE_LEXER_RULE_SKIPPED;
             else if (std::regex_match(line, matches, this->_parse_rule_decl_pattern))
-                mode = 1;
+                mode = MODE_PARSER_RULE;
             else
-                mode = 2;
+                mode = MODE_ERROR;
 
             int error_code = 0;
-            if (mode == 0)
+
+            switch (mode)
             {
+            case MODE_LEXER_RULE:
+
                 if (pass == 1)
-                    error_code = handle_lexer_rule(line, matches);
-            }
-            else if (mode == 1)
-            {
+                    error_code = handle_lexer_rule(line, matches, false);
+                break;
+
+            case MODE_LEXER_RULE_SKIPPED:
+
+                if (pass == 1)
+                    error_code = handle_lexer_rule(line, matches, true);
+                break;
+
+            case MODE_PARSER_RULE:
+
                 if (pass == 1)
                     error_code = handle_parser_rule_first_pass(line, matches);
                 else
                     error_code = handle_parser_rule_second_pass(line, matches);
-            }
-            else
-            {
+                break;
+
+            default:
+
                 error_code = ERR_ILL_DECL;
                 _diag_msg_reason = "illegal declaration";
+                break;
             }
+
             // 生成诊断信息
             if (error_code)
             {
@@ -118,7 +147,7 @@ int InputFileResolver::resolve_input_file(const char *file_name, Rules &result)
     return errs;
 }
 
-int InputFileResolver::handle_lexer_rule(std::string const &line, std::smatch &matches)
+int InputFileResolver::handle_lexer_rule(std::string const &line, std::smatch &matches, bool skipped)
 {
 
     // “left”, “right” 对应词法规则的左部和右部：
@@ -135,7 +164,7 @@ int InputFileResolver::handle_lexer_rule(std::string const &line, std::smatch &m
     }
     // 新的词法规则
     symbol_id id = add_terminal(left);
-    if (add_lexer_rule(id, right))
+    if (add_lexer_rule(id, right, skipped))
     {
         _diag_msg_reason = "regular expression `" + right + "` cannot be compiled";
         return LERR_CANT_COMPILE_REGEX;
@@ -211,11 +240,11 @@ symbol_id InputFileResolver::add_non_terminal(std::string const &name)
 }
 
 /// 根据id和regex构造词法规则，将其添加到out_rules中。返回是否出错(0表示成功)。
-int InputFileResolver::add_lexer_rule(symbol_id id, std::string &regex)
+int InputFileResolver::add_lexer_rule(symbol_id id, std::string &regex, bool skipped)
 {
     try
     {
-        out_rules->lexer_rules.push_back(LexerRule(id, regex));
+        out_rules->lexer_rules.push_back(LexerRule(id, regex, skipped));
     }
     catch (...)
     {

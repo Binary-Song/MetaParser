@@ -6,8 +6,8 @@
  
 int main()
 { 
-    const char rules_file_path[] = ROOT_DIR "/data/rules2.txt";
-    const char code_file_path[] = ROOT_DIR "/data/code2.txt";
+    const char rules_file_path[] = PROJECT_ROOT "/data/rules2.txt";
+    const char code_file_path[] = PROJECT_ROOT "/data/code2.txt";
 
     // 创建解析器对象
     InputFileResolver resolver;
