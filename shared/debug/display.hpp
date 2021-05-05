@@ -84,12 +84,12 @@ inline void _print_tree_node_recur(Parser const &parser,
     std::cout << indent;
     if (last)
     {
-        std::cout << "\\-";
+        std::cout << "\\--";
         indent += "  ";
     }
     else
     {
-        std::cout << "|-";
+        std::cout << "|--";
         indent += "| ";
     }
     // 结点内容

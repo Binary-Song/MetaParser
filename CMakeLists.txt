@@ -27,7 +27,7 @@ add_subdirectory(shared)
 add_subdirectory(meta-lexer)
 add_subdirectory(meta-parser)
 add_subdirectory(input-resolver)
-add_subdirectory(examples)
+add_subdirectory(user-interface)
 
 # docs
 
